@@ -17,20 +17,32 @@
   </head>
   <body>
 
-    {{-- <header> --}}
+    <header>
       {{-- Slider --}}
       @includeif('partials.slider')
       {{-- Navigation Bar --}}
       @includeif('partials.nav')
-    {{-- </header> --}}
+    </header>
 
-    <section class="about-us">
-      <h2>About US</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
+    {{-- About US Section --}}
+    <section class="about-us" style="position:relative;z-index:100;">
+      <div class="container">
+        <h2>About US</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </p>
+      </div>
     </section>
-    {{-- Invoking Header Slider --}}
-    <script type="text/javascript">jssor_1_slider_init();</script>
+
+
+
+    {{-- Javascript Codes --}}
+    {{-- Parallex effect for header image and about us --}}
+    <script type="text/javascript">
+      window.onscroll = function() {
+        var jssor_1 = document.getElementById('jssor_1');
+        jssor_1.style.top = (window.pageYOffset)*.5 + 'px';
+      };
+    </script>
   </body>
 </html>
