@@ -5,9 +5,10 @@
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,regular,500,600,700&subset=latin-ext,vietnamese,latin,cyrillic" rel="stylesheet" type="text/css" />
-    {{ Html::style('css/styles.css') }}
-    {{ Html::style('css/header.slider.css') }}
-    {{ Html::style('css/about-us.css') }}
+    {{ Html::style('css/home/styles.css') }}
+    {{ Html::style('css/home/header.slider.css') }}
+    {{ Html::style('css/home/about-us.css') }}
+    {{ Html::style('css/home/our-work.css') }}
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -16,7 +17,7 @@
     <script src="{{ asset('js/header.slider.js') }}" type="text/javascript"></script>
   </head>
   <body>
-
+    <img class="our-work-bg" src="{{ asset('images/our_work_bg.jpg') }}" alt="">
     <header>
       {{-- Slider --}}
       @includeif('partials.slider')
@@ -24,8 +25,10 @@
       @includeif('partials.nav')
     </header>
 
+
+
     {{-- About US Section --}}
-    <section class="about-us" style="position:relative;z-index:100;">
+    <section class="about-us">
       <div class="container">
         <h2>About US</h2>
         <p>
@@ -36,12 +39,22 @@
 
 
 
+    <div class="our-work">
+      <div class="cover"></div>
+      <div class="our-work-slider">
+
+      </div>
+    </div>
+
+
+
+
     {{-- Javascript Codes --}}
     {{-- Parallex effect for header image and about us --}}
     <script type="text/javascript">
       window.onscroll = function() {
         var jssor_1 = document.getElementById('jssor_1');
-        jssor_1.style.top = (window.pageYOffset)*.5 + 'px';
+        jssor_1.style.top = (window.pageYOffset)*.3 + 'px';
       };
     </script>
   </body>

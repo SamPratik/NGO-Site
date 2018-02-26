@@ -1,0 +1,31 @@
+.our-work {
+  position: relative;
+  height: 800px;
+  box-sizing: border-box;
+}
+
+.our-work-bg {
+  position:fixed;
+  z-index:-1000;
+  top:0px;
+  left:0px;
+  width:100%
+}
+
+.our-work .cover {
+  position: absolute;
+  background-color: rgba(0,0,0,.7);
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+}
+
+.our-work-slider {
+  position: absolute;
+  top: 150px;
+  right: 50px;
+  bottom: 150px;
+  left: 50px;
+  background-color: red;
+}
