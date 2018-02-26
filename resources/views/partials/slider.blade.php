@@ -1,26 +1,26 @@
-<div id="jssor_1" style="margin:0 auto;top:0px;left:0px;width:980px;height:380px;overflow:hidden;visibility:hidden;">
+<div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:380px;overflow:hidden;visibility:hidden;">
     <!-- Loading Screen -->
     <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
         <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/spin.svg" />
     </div>
     <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
         <div data-p="170.00">
-            <img data-u="image" src="{{ asset('images/slider_images/slider_4.jpg') }}" />
-            <div data-u="caption" data-t="0" style="position:absolute;top:350px;left:30px;width:500px;color:#fff;background-color:rgba(0,0,0,0.5);font-family:Oswald,sans-serif;font-size:32px;font-weight:200;line-height:1.2;text-align:center;">
+            <img class="slider-img" data-u="image" src="{{ asset('images/slider_images/slider_4.jpg') }}" />
+            <div data-u="caption" data-t="0" style="position:absolute;top:400px;left:30px;width:500px;color:#fff;background-color:rgba(0,0,0,0.5);font-family:Oswald,sans-serif;font-size:32px;font-weight:200;line-height:1.2;text-align:center;">
               <h2>Lorem ipsum dolor sit amet</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
             </div>
         </div>
         <div data-p="170.00">
             <img class="slider-img" src="{{ asset('images/slider_images/slider_1.jpg') }}" width="100%" alt="">
-            <div data-u="caption" data-t="10" style="position:absolute;top:50px;left:100px;width:300px;height:260px;color:#fff;background-color:rgba(0,0,0,0.7);font-family:Oswald,sans-serif;font-size:24px;font-weight:200;line-height:1.25;padding:15px 15px 15px 15px;box-sizing:border-box;">
+            <div data-u="caption" data-t="10" style="position:absolute;top:70px;left:100px;width:300px;height:260px;color:#fff;background-color:rgba(0,0,0,0.7);font-family:Oswald,sans-serif;font-size:24px;font-weight:200;line-height:1.25;padding:15px 15px 15px 15px;box-sizing:border-box;">
               <h2>Lorem ipsum dolor sit amet</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
             </div>
         </div>
         <div data-p="170.00">
             <img data-u="image" src="{{ asset('images/slider_images/slider_3.jpg') }}" />
-            <div data-u="caption" data-t="2" style="position:absolute;top:50px;left:-505px;width:500px;color:#fff;background-color:rgba(0,0,0,0.5);font-family:Oswald,sans-serif;font-size:32px;font-weight:200;line-height:1.2;text-align:center;">
+            <div data-u="caption" data-t="2" style="position:absolute;top:100px;left:-505px;width:500px;color:#fff;background-color:rgba(0,0,0,0.5);font-family:Oswald,sans-serif;font-size:32px;font-weight:200;line-height:1.2;text-align:center;">
               <h2>Lorem ipsum dolor sit amet</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
             </div>

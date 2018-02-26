@@ -4,21 +4,14 @@ body {
     color: #818181;
 }
 
-header {
-  position: relative;
-}
-
-header #jssor_1 {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-}
-
 nav {
+  position:fixed !important;
+  top:0px;
+  width:100%;
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-header .logo {
+.logo {
   width:40px;
   height:40px;
   border-radius:50%;

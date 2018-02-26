@@ -1,0 +1,13 @@
+.about-us {
+  background-color: #eee;
+  /* position: relative;
+  top:500px; */
+}
+
+.about-us h2 {
+  text-align: center;
+}
+
+.about-us p {
+  text-align: center;
+}
