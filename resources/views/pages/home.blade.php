@@ -41,10 +41,11 @@
 
     <div class="our-work">
       <div class="cover"></div>
-      <div class="our-work-slider">
+      <div class="our-work-panels">
+        <h2 class="text-center">OUR WORK</h2><br><br>
         <div class="row">
           <div class="col-md-4">
-            <div class="card">
+            <div class="card work-panel">
               <img class="card-img-top" src="http://lorempixel.com/640/400" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
@@ -54,7 +55,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <div class="card">
+            <div class="card work-panel">
               <img class="card-img-top" src="http://lorempixel.com/640/400/sports" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
@@ -64,7 +65,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <div class="card">
+            <div class="card work-panel">
               <img class="card-img-top" src="http://lorempixel.com/g/640/400" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>

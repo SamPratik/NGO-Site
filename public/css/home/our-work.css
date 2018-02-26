@@ -21,11 +21,24 @@
   right: 0px;
 }
 
-.our-work-slider {
+.our-work-panels {
   position: absolute;
-  top: 150px;
+  top: 100px;
   right: 50px;
   bottom: 150px;
   left: 50px;
   /* background-color: red; */
+}
+
+.our-work-panels h2 {
+  color:#fff;
+  font-weight:bold;
+  letter-spacing:3px
+}
+
+.work-panel {
+  background-color: rgba(0,0,0,.7);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
 }
