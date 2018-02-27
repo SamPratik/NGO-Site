@@ -65,7 +65,12 @@
           </div><br>
           <div class="row">
             <div class="col">
-              <textarea class="form-control" name="name" rows="8" cols="80" placeholder="Your Queries"></textarea>
+              <textarea class="form-control" name="name" rows="5" cols="80" placeholder="Your Queries"></textarea>
+            </div>
+          </div><br>
+          <div class="row text-center">
+            <div class="col">
+              <input style="width:200px;" class="btn btn-primary" type="submit" name="" value="Submit">
             </div>
           </div>
         </form>

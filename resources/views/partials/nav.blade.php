@@ -9,25 +9,25 @@
   <div class="collapse navbar-collapse links" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a href="#" class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">About US</a>
+        <a href="#" class="nav-link" href="#">About US</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Achievements</a>
+        <a href="#" class="nav-link" href="#">Achievements</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Our Work</a>
+        <a href="#" class="nav-link" href="#">Our Work</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">News</a>
+        <a href="#" class="nav-link" href="#">News</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Notice</a>
+        <a href="#" class="nav-link" href="#">Notice</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
+        <a href="#" class="nav-link" href="#">Contact</a>
       </li>
     </ul>
   </div>
