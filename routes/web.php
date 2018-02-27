@@ -15,6 +15,6 @@
 //     return view('welcome');
 // });
 
-Route::get('/home', function() {
+Route::get('/', function() {
     return view('pages.home');
 });

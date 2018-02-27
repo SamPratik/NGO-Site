@@ -1,0 +1,16 @@
+.contact-notice {
+  height: 500px;
+  background-color:#fff;
+  position: relative;
+  z-index: 0;
+}
+
+.contact {
+  height: 500px;
+  border: 1px solid black;
+}
+
+.notice {
+  height: 500px;
+  border: 1px solid black;
+}

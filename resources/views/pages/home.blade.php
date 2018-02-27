@@ -9,6 +9,7 @@
     {{ Html::style('css/home/header.slider.css') }}
     {{ Html::style('css/home/about-us.css') }}
     {{ Html::style('css/home/our-work.css') }}
+    {{ Html::style('css/home/contact-notice.css') }}
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -39,6 +40,7 @@
 
 
 
+    {{-- Our Work Section --}}
     <div class="our-work">
       <div class="cover"></div>
       <div class="our-work-panels">
@@ -78,6 +80,21 @@
       </div>
     </div>
 
+
+
+    {{-- Contact us & Notice Section --}}
+    <section class="contact-notice">
+      <div class="container contact-notice-container">
+        <div class="row">
+          <div class="col-md-6 notice">
+
+          </div>
+          <div class="col-md-6 contact">
+
+          </div>
+        </div>
+      </div>
+    </section>
 
 
 

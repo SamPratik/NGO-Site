@@ -2,6 +2,7 @@
   position: relative;
   height: 800px;
   box-sizing: border-box;
+  z-index: 0;
 }
 
 .our-work-bg {
@@ -41,4 +42,28 @@
   color: white;
   padding: 10px;
   border-radius: 5px;
+}
+
+@media screen and (max-width:767px) {
+  .our-work {
+    height: 2100px;
+  }
+}
+
+@media screen and (max-width:680px) {
+  .our-work {
+    height: 2000px;
+  }
+}
+
+@media screen and (max-width:630px) {
+  .our-work {
+    height: 1900px;
+  }
+}
+
+@media screen and (max-width:540px) {
+  .our-work {
+    height: 1800px;
+  }
 }
