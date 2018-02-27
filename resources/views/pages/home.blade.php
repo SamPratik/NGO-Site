@@ -13,8 +13,9 @@
     {{ Html::style('css/home/header.slider.css') }}
     {{ Html::style('css/home/about-us.css') }}
     {{ Html::style('css/home/our-work.css') }}
-    {{ Html::style('css/home/contact-notice.css') }}
+    {{ Html::style('css/contact-notice.css') }}
     {{ Html::style('css/scroll-bar.css') }}
+    {{ Html::style('css/footer.css') }}
 
     {{-- Bootstrap 4 JS --}}
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -92,6 +93,10 @@
 
     {{-- Contact us & Notice Section --}}
     @includeif('partials.contact-notice')
+
+
+    {{-- Footer Section --}}
+    @includeif('partials.footer')
 
 
 
