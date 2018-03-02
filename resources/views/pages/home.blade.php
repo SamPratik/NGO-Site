@@ -6,9 +6,6 @@
     {{ Html::style('css/home/header.slider.css') }}
     {{ Html::style('css/home/about-us.css') }}
     {{ Html::style('css/home/our-work.css') }}
-    {{ Html::style('css/contact-notice.css') }}
-    {{ Html::style('css/scroll-bar.css') }}
-    {{ Html::style('css/footer.css') }}
 @endpush
 
 {{-- Header slider JS --}}
@@ -26,7 +23,7 @@
       {{-- Slider --}}
       @includeif('partials.slider')
       {{-- Navigation Bar --}}
-      @includeif('partials.nav')
+      @parent
     </header>
 
 

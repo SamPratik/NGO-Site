@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     {{-- Custom CSS for Home page --}}
+    {{ Html::style('css/nav-bar.css') }}
+    {{ Html::style('css/contact-notice.css') }}
+    {{ Html::style('css/scroll-bar.css') }}
+    {{ Html::style('css/footer.css') }}
     @stack('styles')
 
     {{-- Bootstrap 4 JS --}}
@@ -21,7 +25,10 @@
   </head>
   <body>
 
-    @yield('content')
+    @section('content')
+      {{-- Naviagation bar --}}
+      @includeif('partials.nav')
+    @show
 
     {{-- Contact us & Notice Section --}}
     @includeif('partials.contact-notice')

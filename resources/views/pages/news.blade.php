@@ -1,12 +1,21 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>News</title>
-  </head>
-  <body>
-    <div class="">
-      
+@extends('pages.main')
+
+@push('styles')
+  {{ Html::style('css/news/header.css') }}
+@endpush
+
+@section('content')
+  {{-- Header section --}}
+  <header>
+    <img src="{{ asset('images/news-header-cropped.jpeg') }}" alt="" width="100%">
+    <h1 class="header-caption">News</h1>
+    @parent
+  </header>
+
+  {{-- News container section --}}
+  <div class="news-container">
+    <div class="container">
+
     </div>
-  </body>
-</html>
+  </div>
+@endsection

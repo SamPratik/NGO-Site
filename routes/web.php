@@ -11,10 +11,10 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/', function() {
     return view('pages.home');
-});
+})->name('home');
+
+Route::get('/news', function() {
+    return view('pages.news');
+})->name('news');
