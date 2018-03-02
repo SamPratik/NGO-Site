@@ -48,7 +48,7 @@
         <div class="row">
           <div class="col-md-4">
             <div class="card work-panel">
-              <img class="card-img-top" src="http://lorempixel.com/640/400" alt="Card image cap">
+              <img class="card-img-top" src="https://picsum.photos/640/400?image=41" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. This line will create another line. This line will create another line. This line will create another line...</p>
@@ -58,7 +58,7 @@
           </div>
           <div class="col-md-4">
             <div class="card work-panel">
-              <img class="card-img-top" src="http://lorempixel.com/640/400/sports" alt="Card image cap">
+              <img class="card-img-top" src="https://picsum.photos/640/400?image=20" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. This line will create another line. This line will create another line. This line will create another line...</p>
@@ -68,7 +68,7 @@
           </div>
           <div class="col-md-4">
             <div class="card work-panel">
-              <img class="card-img-top" src="http://lorempixel.com/g/640/400" alt="Card image cap">
+              <img class="card-img-top" src="https://picsum.photos/640/400?image=5" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. This line will create another line. This line will create another line. This line will create another line...</p>
@@ -76,7 +76,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> {{-- .row --}}
       </div>
     </div>
 @endsection
