@@ -18,3 +18,7 @@ Route::get('/', function() {
 Route::get('/news', function() {
     return view('pages.news');
 })->name('news');
+
+Route::get('/achievements', function() {
+    return view('pages.achievements');
+})->name('achievements');
