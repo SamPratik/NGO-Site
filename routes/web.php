@@ -22,3 +22,7 @@ Route::get('/news', function() {
 Route::get('/achievements', function() {
     return view('pages.achievements');
 })->name('achievements');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
