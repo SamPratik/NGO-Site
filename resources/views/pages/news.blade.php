@@ -16,10 +16,12 @@
   {{-- News container section --}}
   <div class="news-container">
     <div class="container">
+      @auth
       <p>
         <button class="btn btn-outline-primary pull-right" onclick="window.location.href='{{ route('news.create') }}'">Add News</button>
         <p style="clear:both;"></p>
       </p>
+      @endauth
       <div class="row">
         <div class="col-md-4">
           <div class="card">
