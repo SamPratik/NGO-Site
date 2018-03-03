@@ -43,3 +43,8 @@ Route::resource('works', 'Admin\WorkController', ['except' => [
 Route::resource('news', 'Admin\NewsController', ['except' => [
     'index'
 ]]);
+
+// Achievements routes...
+Route::resource('achievemetns', 'Admin\AchievementsController', ['except' => [
+    'index'
+]]);
