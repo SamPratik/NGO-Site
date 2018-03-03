@@ -1,36 +1,33 @@
 @extends('pages.main')
 
 @push('styles')
-  <style media="screen">
-    .add-notice-form-container {
-      position: relative;
-      top: 40px;
-      padding: 50px 0px;
-    }
-
-    h2 {
-      font-weight: bold;
-      letter-spacing: 3px;
-    }
-  </style>
+	<style media="screen">
+		.edit-news-form-container {
+			padding: 70px 0px 50px 0px;
+		}
+	</style>
 @endpush
 
 @section('content')
   @parent
-  <div class="add-notice-form-container">
+  <div class="edit-news-form-container">
     <div class="container">
-      <h2 class="text-center">Add Notice</h2>
+      <h2 class="text-center">Edit Notice</h2>
       <form class="" action="index.html" method="post">
         <div class="form-group">
           <label for=""><strong>Title</strong></label>
           <input type="text" class="form-control" placeholder="max 30 characters...">
         </div>
+				<div class="form-group">
+					<label for=""><strong>Display image</strong></label>
+					<label class="btn btn-outline-success" style="width:200px;cursor:pointer;margin-left:10px;margin-top:5px;"><input style="display:none;" type="file" />Choose File</label>
+				</div>
         <div class="form-group">
           <label for=""><strong>Description</strong></label>
           <textarea name="name" class="form-control" rows="25" cols="80"></textarea>
         </div>
 				<div class="form-group text-center">
-				  <input type="submit" value="Add Notice" class="btn btn-outline-primary" style="width:200px;">
+				  <input type="submit" value="Update Notice" class="btn btn-outline-primary" style="width:200px;">
 					<p style="clear:both;"></p>
 				</div>
       </form>

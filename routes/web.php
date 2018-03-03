@@ -38,3 +38,8 @@ Route::resource('notices', 'Admin\NoticeController', ['except' => [
 Route::resource('works', 'Admin\WorkController', ['except' => [
     'index'
 ]]);
+
+// News routes
+Route::resource('news', 'Admin\NewsController', ['except' => [
+    'index'
+]]);
