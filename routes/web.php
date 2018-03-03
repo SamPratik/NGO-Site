@@ -31,6 +31,10 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('admin.logout');
 
 // Notice routes...
 Route::resource('notices', 'Admin\NoticeController', ['except' => [
-    'index',
-    'show'
+    'index'
+]]);
+
+// Our work routes...
+Route::resource('works', 'Admin\WorkController', ['except' => [
+    'index'
 ]]);

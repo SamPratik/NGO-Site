@@ -34,7 +34,7 @@
         <h2>
             About US
             @auth
-            <button type="button" class="btn btn-outline-warning btn-lg pull-right">Update</button>    
+            <button type="button" class="btn btn-outline-warning btn-lg pull-right">Update</button>
             @endauth
         </h2>
         <p>
@@ -49,7 +49,12 @@
     <div class="our-work">
       <div class="cover"></div>
       <div class="our-work-panels">
-        <h2 class="text-center">OUR WORK</h2><br><br>
+        <h2 class="text-center">
+          OUR WORK
+          <span class="pull-right">
+            <button onclick="window.location.href='{{ route('works.create') }}'" type="button" name="button" class="btn btn-outline-primary">Add Work</button>
+          </span>
+        </h2><br><br>
         <div class="row">
           <div class="col-md-4">
             <div class="card work-panel">
@@ -59,13 +64,13 @@
                   <span>Card title</span>
                   @auth
                   <span class="pull-right">
-                    <button type="button" class="btn btn-outline-warning btn-sm">Edit</button>
+                    <button type="button" class="btn btn-outline-warning btn-sm" onclick="window.location.href='{{ route('works.edit', [1]) }}'">Edit</button>
                     <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
                   </span>
                   @endauth
                 </h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. This line will create another line. This line will create another line. This line will create another line...</p>
-                <a href="#" class="btn btn-outline-primary">Read More</a>
+                <a href="{{ route('works.show', [1]) }}" class="btn btn-outline-primary">Read More</a>
               </div>
             </div>
           </div>
