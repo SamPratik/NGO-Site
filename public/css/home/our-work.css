@@ -43,6 +43,12 @@
   border-radius: 5px;
 }
 
+.card-caption:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
 @media screen and (max-width:767px) {
   .our-work {
     height: 2100px;

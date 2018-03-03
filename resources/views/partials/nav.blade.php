@@ -29,6 +29,11 @@
       <li class="nav-item">
         <a href="#" class="nav-link">Contact</a>
       </li>
+      @auth
+      <li class="nav-item">
+        <a href="{{ route('admin.logout') }}" class="nav-link">Logout</a>
+      </li>
+      @endauth
     </ul>
   </div>
 </nav>

@@ -48,7 +48,7 @@
         <div class="row">
           <div class="col-md-4">
             <div class="card work-panel">
-              <img class="card-img-top" src="https://picsum.photos/640/400?image=41" alt="Card image cap">
+              <img class="card-img-top" src="https://picsum.photos/640/400?image=26" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title card-caption">
                   <span>Card title</span>
@@ -60,27 +60,43 @@
                   @endauth
                 </h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. This line will create another line. This line will create another line. This line will create another line...</p>
-                <a href="#" class="btn btn-primary">Read More</a>
+                <a href="#" class="btn btn-outline-primary">Read More</a>
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="card work-panel">
-              <img class="card-img-top" src="https://picsum.photos/640/400?image=20" alt="Card image cap">
+              <img class="card-img-top" src="https://picsum.photos/640/400?image=46" alt="Card image cap">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title card-caption">
+                  <span>Card title</span>
+                  @auth
+                  <span class="pull-right">
+                    <button type="button" class="btn btn-outline-warning btn-sm">Edit</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+                  </span>
+                  @endauth
+                </h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. This line will create another line. This line will create another line. This line will create another line...</p>
-                <a href="#" class="btn btn-primary">Read More</a>
+                <a href="#" class="btn btn-outline-primary">Read More</a>
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="card work-panel">
-              <img class="card-img-top" src="https://picsum.photos/640/400?image=5" alt="Card image cap">
+              <img class="card-img-top" src="https://picsum.photos/640/400?image=36" alt="Card image cap">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title card-caption">
+                  <span>Card title</span>
+                  @auth
+                  <span class="pull-right">
+                    <button type="button" class="btn btn-outline-warning btn-sm">Edit</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+                  </span>
+                  @endauth
+                </h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. This line will create another line. This line will create another line. This line will create another line...</p>
-                <a href="#" class="btn btn-primary">Read More</a>
+                <a href="#" class="btn btn-outline-primary">Read More</a>
               </div>
             </div>
           </div>

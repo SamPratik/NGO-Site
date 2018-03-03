@@ -24,3 +24,5 @@ Route::get('/achievements', function() {
 })->name('achievements');
 
 Auth::routes();
+
+Route::get('/logout', 'Auth\LoginController@logout')->name('admin.logout');
