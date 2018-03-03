@@ -23,6 +23,14 @@ Route::get('/achievements', function() {
     return view('pages.achievements');
 })->name('achievements');
 
-Auth::routes();
 
+//========= Admin Routes ==========
+// Authentication routes...
+Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout')->name('admin.logout');
+
+// Notice routes...
+Route::resource('notices', 'Admin\NoticeController', ['except' => [
+    'index',
+    'show'
+]]);
