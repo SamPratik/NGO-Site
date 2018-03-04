@@ -6,7 +6,7 @@
           Notices
           @auth
           <a style="text-transform:capitalize;letter-spacing:0px;" class="btn btn-outline-primary btn-sm pull-right" href="{{ route('notices.create') }}">
-            Add Notice
+            <i class="fa fa-plus" aria-hidden="true"></i> Add Notice
           </a>
           @endauth
         </h2>
@@ -21,8 +21,8 @@
               <small><strong>24 January, 2017</strong></small>
               @auth
               <span class="pull-right">
-                <button class="btn btn-outline-warning btn-sm" onclick="window.location.href='{{ route('notices.edit', [1]) }}'">Edit</button>
-                <button class="btn btn-outline-danger btn-sm">Delete</button>
+                <button class="btn btn-outline-warning btn-sm" onclick="window.location.href='{{ route('notices.edit', [1]) }}'"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                <button class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
               </span>
               @endauth
             </p>
@@ -37,8 +37,8 @@
               <small>Donec id elit non mi porta.</small>
               @auth
                 <span class="pull-right">
-                  <button type="button" class="btn btn-outline-warning btn-sm">Edit</button>
-                  <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+                  <button type="button" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                  <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
                 </span>
               @endauth
             </p>
@@ -53,8 +53,8 @@
               <small>Donec id elit non mi porta.</small>
               @auth
                 <span class="pull-right">
-                  <button type="button" class="btn btn-outline-warning btn-sm">Edit</button>
-                  <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+                  <button type="button" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                  <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
                 </span>
               @endauth
             </p>
@@ -69,8 +69,8 @@
               <small>Donec id elit non mi porta.</small>
               @auth
                 <span class="pull-right">
-                  <button type="button" class="btn btn-outline-warning btn-sm">Edit</button>
-                  <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+                  <button type="button" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                  <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
                 </span>
               @endauth
             </p>
@@ -85,8 +85,8 @@
               <small>Donec id elit non mi porta.</small>
               @auth
                 <span class="pull-right">
-                  <button type="button" class="btn btn-outline-warning btn-sm">Edit</button>
-                  <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+                  <button type="button" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                  <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
                 </span>
               @endauth
             </p>
@@ -97,7 +97,7 @@
         <h2>
           Contact US
           @auth
-          <button class="btn btn-sm btn-outline-primary pull-right" type="button" data-toggle="modal" data-target="#editContactModal">Edit</button>
+          <button class="btn btn-sm btn-outline-primary pull-right" type="button" data-toggle="modal" data-target="#editContactModal"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
           @endauth
         </h2>
         <div>
@@ -159,7 +159,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" name="button" class="btn btn-outline-primary">Save Changes</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
       </div>
     </div>
   </div>
