@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', 'Pages\PagesController@home')->name('home');
+Route::get('/', 'Admin\HomeController@home')->name('home');
+Route::post('/about-us', 'Admin\HomeController@storeAboutUs')->name('store.about-us');
 
 Route::get('/news', function() {
     return view('pages.news');

@@ -10,6 +10,7 @@
 
 {{-- Header slider JS --}}
 @push('scripts')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ asset('js/jssor.slider-27.0.3.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/header.slider.js') }}" type="text/javascript"></script>
 @endpush
@@ -37,7 +38,7 @@
             <button type="button" class="btn btn-outline-warning btn-lg pull-right" data-toggle="modal" data-target="#aboutUsUpdateModal"><i class="fa fa-pencil" aria-hidden="true"></i> Update</button>
             @endauth
         </h2>
-        <p>{{ $aboutUs->description }}</p>
+        <p id="aboutUsParagraph">{{ $aboutUs->description }}</p>
       </div>
     </section>
 
@@ -128,14 +129,15 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-            <form class="" method="post">
+            <form id="aboutUsForm">
+                {{ csrf_field() }}
                 <div class="form-group">
-                  <textarea class="form-control" name="name" rows="8" cols="80"></textarea>
+                  <textarea id="aboutUsTextArea" class="form-control" name="name" rows="8" cols="80"></textarea>
                 </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" name="button" class="btn btn-outline-warning"><i class="fa fa-save"></i> Save Changes</button>
+            <button type="button" name="button" class="btn btn-outline-warning" onclick="updateAboutUs()"><i class="fa fa-save"></i> Save Changes</button>
             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
           </div>
         </div>
@@ -143,3 +145,27 @@
       </div>
     </div>
 @endauth
+
+
+{{-- updating about us JS function --}}
+@push('scripts')
+    <script>
+        function updateAboutUs() {
+            var aboutUs = document.getElementById("aboutUsTextArea").value;
+            var token = $("input[name='_token']").val();
+            $.post(
+                'about-us',
+                {
+                    'description': aboutUs,
+                    '_token': token
+                },
+                function(data) {
+                    // refresh the section after updating so that you can
+                    //  see the change in just after uddating the about us
+                    $("#aboutUsParagraph").load(location.href + " #aboutUsParagraph");
+                    document.getElementById("aboutUsForm").reset();
+                }
+            );
+        }
+    </script>
+@endpush
