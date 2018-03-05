@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function() {
-    return view('pages.home');
-})->name('home');
+Route::get('/', 'Pages\PagesController@home')->name('home');
 
 Route::get('/news', function() {
     return view('pages.news');
