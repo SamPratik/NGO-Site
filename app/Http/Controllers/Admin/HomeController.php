@@ -18,7 +18,6 @@ class HomeController extends Controller
     // show about us text in the modal...
     public function aboutUsText() {
       $aboutUs = AboutUs::find(1);
-      // return view('pages.home', ['aboutUs' => $aboutUs]);
       return $aboutUs;
     }
 

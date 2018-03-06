@@ -6,6 +6,7 @@
     {{ Html::style('css/home/header.slider.css') }}
     {{ Html::style('css/home/about-us.css') }}
     {{ Html::style('css/home/our-work.css') }}
+    {{ Html::style('css/home/toast.css') }}
 @endpush
 
 {{-- Header slider JS --}}
@@ -175,10 +176,18 @@
                     // refresh the section after updating so that you can
                     //  see the change in just after uddating the about us
                     $("#aboutUsParagraph").load(location.href + " #aboutUsParagraph");
-                    // $("#aboutUsTextArea").load(location.href + " #aboutUsTextArea");
-                    document.getElementById("aboutUsForm").reset();
+                    // document.getElementById("aboutUsForm").reset();
+                    // fades in a toast for 3 seconds...
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                 }
             );
         }
     </script>
 @endpush
+
+{{-- Toast component fires after about us section update --}}
+@component('components.success-alert')
+    Successfully updated!
+@endcomponent
