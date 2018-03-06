@@ -35,10 +35,10 @@
         <h2>
             About US
             @auth
-            <button type="button" class="btn btn-outline-warning btn-lg pull-right" data-toggle="modal" data-target="#aboutUsUpdateModal"><i class="fa fa-pencil" aria-hidden="true"></i> Update</button>
+            <button onclick="showAboutUsText()" type="button" class="btn btn-outline-warning btn-lg pull-right" data-toggle="modal" data-target="#aboutUsUpdateModal"><i class="fa fa-pencil" aria-hidden="true"></i> Update</button>
             @endauth
         </h2>
-        <p id="aboutUsParagraph">{{ $aboutUs->description }}</p>
+        <p id="aboutUsParagraph">{{ $aboutUs[0]->description }}</p>
       </div>
     </section>
 
@@ -150,6 +150,18 @@
 {{-- updating about us JS function --}}
 @push('scripts')
     <script>
+        // showing about us description when clicked on update button...
+        function showAboutUsText() {
+            $.get(
+                'aboutus-text',
+                function(data) {
+                    document.getElementById('aboutUsTextArea').value = data.description;
+                    console.log(data);
+                }
+            );
+        }
+
+        // updating about us text...
         function updateAboutUs() {
             var aboutUs = document.getElementById("aboutUsTextArea").value;
             var token = $("input[name='_token']").val();
@@ -163,6 +175,7 @@
                     // refresh the section after updating so that you can
                     //  see the change in just after uddating the about us
                     $("#aboutUsParagraph").load(location.href + " #aboutUsParagraph");
+                    // $("#aboutUsTextArea").load(location.href + " #aboutUsTextArea");
                     document.getElementById("aboutUsForm").reset();
                 }
             );

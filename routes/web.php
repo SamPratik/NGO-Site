@@ -12,7 +12,8 @@
 */
 
 Route::get('/', 'Admin\HomeController@home')->name('home');
-Route::post('/about-us', 'Admin\HomeController@storeAboutUs')->name('store.about-us');
+Route::get('/aboutus-text', 'Admin\HomeController@aboutUsText')->name('aboutus-text');
+Route::post('/about-us', 'Admin\HomeController@updateAboutUs')->name('update.about-us');
 
 Route::get('/news', function() {
     return view('pages.news');
