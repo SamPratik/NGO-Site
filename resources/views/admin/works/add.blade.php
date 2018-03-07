@@ -15,7 +15,9 @@
 			color: red;
 			font-size: 20px;
 		}
+
   </style>
+	{{ Html::style('css/toast.css') }}
 @endpush
 
 @section('content')
@@ -32,11 +34,12 @@
 				<div class="form-group">
 				  <label for=""><strong>Display image</strong></label>
 				  <label class="btn btn-success" style="width:200px;margin-left:30px;">Choose File<input style="display:none;" type="file" name="workImage" id="workImage"></label>
+					<span style="margin-left:20px;">[upload 640X400 image for better quality]</span>
 					<p class="error-message"></p>
 				</div>
         <div class="form-group">
           <label for=""><strong>Description</strong></label>
-          <textarea id="description" class="form-control" name="name" rows="25" cols="80"></textarea>
+          <textarea id="description" class="form-control" name="description" rows="25" cols="80"></textarea>
 					<p class="error-message"></p>
         </div>
         <div class="form-group text-center">
@@ -46,6 +49,11 @@
     </div>
   </div>
 @endsection
+
+{{-- success alert message --}}
+@component('components.success-alert')
+	New work has been added successfully!
+@endcomponent
 
 {{-- storing work in database --}}
 @push('scripts')
@@ -94,6 +102,15 @@
 							em[i].innerHTML = '';
 						}
 
+						// if work is stored in database successfully, then show the
+						// success toast...
+						if(data === "success") {
+							document.getElementById("addWorkForm").reset();
+							var x = document.getElementById("snackbar");
+							x.className = "show";
+							setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+						}
+
 						// Showing error messages in the HTML...
 						if(typeof data.error != 'undefined') {
 							if(typeof data.title != 'undefined') {
@@ -118,7 +135,7 @@
   <script>
 	  var editor_config = {
 	    path_absolute : "{{ URL::to('/') }}/",
-	    selector: "textarea",
+	    selector: "textarea#description",
 	    plugins: [
 	      "advlist autolink lists link image charmap print preview hr anchor pagebreak",
 	      "searchreplace wordcount visualblocks visualchars code fullscreen",

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Image;
 use Validator;
+use App\Work as Work;
 
 class WorkController extends Controller
 {
@@ -37,29 +38,40 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
+        // validation rules...
         $rules = [
-            'title' => 'required',
+            'title' => 'required|max:191',
             'workImage' => 'image',
             'description' => 'required',
         ];
+        // custom validation messages...
         $messages = [
             'workImage.image' => 'Display image must be an image'
         ];
+        // validator instance...
         $validator = Validator::make($request->all(), $rules, $messages);
 
+        // if validation fails return error messages...
         if($validator->fails()) {
-          // sending errors for each fields as a response to ajax...
+          // adding an additional field called 'error'...
           $validator->errors()->add('error', 'true');
           return response()->json($validator->errors());
         }
 
+        // if validation passes save inputs to database...
         $image = $request->file('workImage');
         $fileName = time() . '.' . $image->getClientOriginalExtension();
         $location = public_path('images/work-images/' . $fileName);
-        Image::make($image)->save($location);
+        Image::make($image)->resize(640, 400)->save($location);
+
+        $work = new Work;
+        $work->title = $request->title;
+        $work->description = $request->description;
+        $work->image = $fileName;
+        $work->save();
 
         // sending a response to the ajax...
-        return $request->all();
+        return 'success';
 
     }
 

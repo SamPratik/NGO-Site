@@ -6,7 +6,7 @@
     {{ Html::style('css/home/header.slider.css') }}
     {{ Html::style('css/home/about-us.css') }}
     {{ Html::style('css/home/our-work.css') }}
-    {{ Html::style('css/home/toast.css') }}
+    {{ Html::style('css/toast.css') }}
 @endpush
 
 {{-- Header slider JS --}}
