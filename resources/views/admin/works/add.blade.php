@@ -18,18 +18,18 @@
     <div class="container">
       <h2 class="text-center" style="font-weight:bold;">Add Work</h2>
       <form id="addWorkForm" method="POST" enctype="multipart/form-data" onsubmit="addWork(event)">
-        {{-- <div class="form-group">
+        <div class="form-group">
           <label for=""><strong>Title</strong>:</label>
-          <input type="text" name="title" class="form-control">
-        </div> --}}
+          <input id="title" type="text" name="title" class="form-control">
+        </div>
 				<div class="form-group">
 				  <label for=""><strong>Display image</strong></label>
 				  <label class="btn btn-success" style="width:200px;margin-left:30px;">Choose File<input style="display:none;" type="file" name="workImage" id="workImage"></label>
 				</div>
-        {{-- <div class="form-group">
+        <div class="form-group">
           <label for=""><strong>Description</strong></label>
-          <textarea class="form-control" name="name" rows="25" cols="80"></textarea>
-        </div> --}}
+          <textarea id="description" class="form-control" name="name" rows="25" cols="80"></textarea>
+        </div>
         <div class="form-group text-center">
           <input type="submit" class="btn btn-outline-primary" style="width:200px;" value="Add Work">
         </div>
@@ -43,22 +43,29 @@
 	<script>
 		function addWork(e) {
 			e.preventDefault();
+			// use this when you are using ajax call to send tinymce content
+			// to the laravel controller...
+			tinyMCE.triggerSave();
 			// getting the extension of the uploaded file...
 			var extension = $("#workImage").val().split('.').pop().toLowerCase();
 			console.log(extension);
-			// checking the found extension value the values in the array for
+			// checking the found extension value with the values in the array for
 			// validation...
 			if($.inArray(extension, ['jpg', 'png']) == -1) {
 				console.log('Please select the right file!');
 			} else {
 				console.log('everything is ok!!');
 				var file_data = $("#workImage").prop('files')[0];
+				var title = $("#title").val();
+				var description = $("#description").val();
 				console.log(file_data);
 
 				// creating form data object of the form...
 				var fd = new FormData();
 				// appengin the image to the form data...
 				fd.append('workImage', file_data);
+				fd.append('title', title);
+				fd.append('description', description);
 				$.ajaxSetup({
             headers: {
                 'X-CSRF-Token': $('meta[name=_token]').attr('content')

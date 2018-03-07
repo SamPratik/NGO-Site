@@ -39,11 +39,11 @@ class WorkController extends Controller
         if($request->hasFile('workImage')) {
             $image = $request->file('workImage');
             $fileName = time() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/' . $fileName);
+            $location = public_path('images/work-images/' . $fileName);
             Image::make($image)->save($location);
         }
         // sending a response to the ajax...
-        return 'File moved successfully!';
+        return $request->all();
     }
 
     /**
