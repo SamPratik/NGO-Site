@@ -1,10 +1,12 @@
 @extends('pages.main')
+@section('meta-ajax')
+	<meta name="_token" content="{{ csrf_token() }}" />
+@endsection
 
 @push('styles')
   <style media="screen">
     .add-work-container {
       position: relative;
-      /* top: 40px; */
       padding: 100px 0px 50px 0px;
     }
   </style>
@@ -15,24 +17,71 @@
   <div class="add-work-container">
     <div class="container">
       <h2 class="text-center" style="font-weight:bold;">Add Work</h2>
-      <form class="" action="index.html" method="post">
-        <div class="form-group">
+      <form id="addWorkForm" method="POST" enctype="multipart/form-data" onsubmit="addWork(event)">
+        {{-- <div class="form-group">
           <label for=""><strong>Title</strong>:</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="form-group">
+          <input type="text" name="title" class="form-control">
+        </div> --}}
+				<div class="form-group">
+				  <label for=""><strong>Display image</strong></label>
+				  <label class="btn btn-success" style="width:200px;margin-left:30px;">Choose File<input style="display:none;" type="file" name="workImage" id="workImage"></label>
+				</div>
+        {{-- <div class="form-group">
           <label for=""><strong>Description</strong></label>
           <textarea class="form-control" name="name" rows="25" cols="80"></textarea>
-        </div>
+        </div> --}}
         <div class="form-group text-center">
-          <input type="submit"class="btn btn-outline-primary" value="Add Work" style="width:200px;">
+          <input type="submit" class="btn btn-outline-primary" style="width:200px;" value="Add Work">
         </div>
       </form>
     </div>
   </div>
 @endsection
 
+{{-- storing work in database --}}
 @push('scripts')
+	<script>
+		function addWork(e) {
+			e.preventDefault();
+			// getting the extension of the uploaded file...
+			var extension = $("#workImage").val().split('.').pop().toLowerCase();
+			console.log(extension);
+			// checking the found extension value the values in the array for
+			// validation...
+			if($.inArray(extension, ['jpg', 'png']) == -1) {
+				console.log('Please select the right file!');
+			} else {
+				console.log('everything is ok!!');
+				var file_data = $("#workImage").prop('files')[0];
+				console.log(file_data);
+
+				// creating form data object of the form...
+				var fd = new FormData();
+				// appengin the image to the form data...
+				fd.append('workImage', file_data);
+				$.ajaxSetup({
+            headers: {
+                'X-CSRF-Token': $('meta[name=_token]').attr('content')
+            }
+        });
+				$.ajax({
+					url: '{{ route('works.store') }}',
+					data: fd,
+					type: 'POST',
+					contentType: false,
+					processData: false,
+					success: function(data) {
+						// showing the response came from the laravel controller...
+						console.log(data);
+					}
+				});
+			}
+		}
+	</script>
+@endpush
+
+@push('scripts')
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
   <script>
 	  var editor_config = {

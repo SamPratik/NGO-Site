@@ -11,6 +11,7 @@
 |
 */
 
+// Home Page Routes
 Route::get('/', 'Admin\HomeController@home')->name('home');
 Route::get('/aboutus-text', 'Admin\HomeController@aboutUsText')->name('aboutus-text');
 Route::post('/about-us', 'Admin\HomeController@updateAboutUs')->name('update.about-us');

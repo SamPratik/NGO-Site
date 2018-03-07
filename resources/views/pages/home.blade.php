@@ -188,6 +188,8 @@
 @endpush
 
 {{-- Toast component fires after about us section update --}}
+@auth
 @component('components.success-alert')
     Successfully updated!
 @endcomponent
+@endauth

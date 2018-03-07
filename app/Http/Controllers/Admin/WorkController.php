@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Image;
 
 class WorkController extends Controller
 {
@@ -35,7 +36,14 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->hasFile('workImage')) {
+            $image = $request->file('workImage');
+            $fileName = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/' . $fileName);
+            Image::make($image)->save($location);
+        }
+        // sending a response to the ajax...
+        return 'File moved successfully!';
     }
 
     /**
