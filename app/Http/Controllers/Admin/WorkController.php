@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Image;
+use Validator;
 
 class WorkController extends Controller
 {
@@ -36,14 +37,30 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->hasFile('workImage')) {
-            $image = $request->file('workImage');
-            $fileName = time() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/work-images/' . $fileName);
-            Image::make($image)->save($location);
+        $rules = [
+            'title' => 'required',
+            'workImage' => 'image',
+            'description' => 'required',
+        ];
+        $messages = [
+            'workImage.image' => 'Display image must be an image'
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if($validator->fails()) {
+          // sending errors for each fields as a response to ajax...
+          $validator->errors()->add('error', 'true');
+          return response()->json($validator->errors());
         }
+
+        $image = $request->file('workImage');
+        $fileName = time() . '.' . $image->getClientOriginalExtension();
+        $location = public_path('images/work-images/' . $fileName);
+        Image::make($image)->save($location);
+
         // sending a response to the ajax...
         return $request->all();
+
     }
 
     /**

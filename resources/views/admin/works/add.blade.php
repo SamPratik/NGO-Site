@@ -9,6 +9,12 @@
       position: relative;
       padding: 100px 0px 50px 0px;
     }
+
+		.error-message {
+			font-weight: bold;
+			color: red;
+			font-size: 20px;
+		}
   </style>
 @endpush
 
@@ -21,14 +27,17 @@
         <div class="form-group">
           <label for=""><strong>Title</strong>:</label>
           <input id="title" type="text" name="title" class="form-control">
+					<p class="error-message"></p>
         </div>
 				<div class="form-group">
 				  <label for=""><strong>Display image</strong></label>
 				  <label class="btn btn-success" style="width:200px;margin-left:30px;">Choose File<input style="display:none;" type="file" name="workImage" id="workImage"></label>
+					<p class="error-message"></p>
 				</div>
         <div class="form-group">
           <label for=""><strong>Description</strong></label>
           <textarea id="description" class="form-control" name="name" rows="25" cols="80"></textarea>
+					<p class="error-message"></p>
         </div>
         <div class="form-group text-center">
           <input type="submit" class="btn btn-outline-primary" style="width:200px;" value="Add Work">
@@ -40,6 +49,7 @@
 
 {{-- storing work in database --}}
 @push('scripts')
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
 		function addWork(e) {
 			e.preventDefault();
@@ -49,11 +59,7 @@
 			// getting the extension of the uploaded file...
 			var extension = $("#workImage").val().split('.').pop().toLowerCase();
 			console.log(extension);
-			// checking the found extension value with the values in the array for
-			// validation...
-			if($.inArray(extension, ['jpg', 'png']) == -1) {
-				console.log('Please select the right file!');
-			} else {
+
 				console.log('everything is ok!!');
 				var file_data = $("#workImage").prop('files')[0];
 				var title = $("#title").val();
@@ -62,7 +68,7 @@
 
 				// creating form data object of the form...
 				var fd = new FormData();
-				// appengin the image to the form data...
+				// appendin the image to the form data...
 				fd.append('workImage', file_data);
 				fd.append('title', title);
 				fd.append('description', description);
@@ -80,15 +86,34 @@
 					success: function(data) {
 						// showing the response came from the laravel controller...
 						console.log(data);
+						var em = document.getElementsByClassName("error-message");
+
+						// after returning from the controller we are clearing the
+						// previous error messages...
+						for(i=0; i<em.length; i++) {
+							em[i].innerHTML = '';
+						}
+
+						// Showing error messages in the HTML...
+						if(typeof data.error != 'undefined') {
+							if(typeof data.title != 'undefined') {
+								em[0].innerHTML = data.title[0];
+							}
+							if(typeof data.workImage != 'undefined') {
+								em[1].innerHTML = data.workImage[0];
+							}
+							if(typeof data.description != 'undefined') {
+								em[2].innerHTML = data.description[0];
+							}
+						}
 					}
 				});
-			}
+
 		}
 	</script>
 @endpush
 
 @push('scripts')
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
   <script>
 	  var editor_config = {
