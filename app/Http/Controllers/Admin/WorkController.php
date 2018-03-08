@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Image;
 use Validator;
 use App\Work as Work;
@@ -38,6 +39,11 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
+        DB::enableQueryLog();
+        $work_count = Work::count();
+        $log = DB::getQueryLog();
+        return $log;
+
         // validation rules...
         $rules = [
             'title' => 'required|max:191',

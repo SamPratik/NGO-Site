@@ -130,6 +130,7 @@
 	</script>
 @endpush
 
+{{-- tinyMCE scripts --}}
 @push('scripts')
 	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
   <script>
