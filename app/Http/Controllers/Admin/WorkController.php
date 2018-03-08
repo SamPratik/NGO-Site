@@ -39,10 +39,7 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
-        DB::enableQueryLog();
         $work_count = Work::count();
-        $log = DB::getQueryLog();
-        return $log;
 
         // validation rules...
         $rules = [
@@ -64,20 +61,28 @@ class WorkController extends Controller
           return response()->json($validator->errors());
         }
 
-        // if validation passes save inputs to database...
-        $image = $request->file('workImage');
-        $fileName = time() . '.' . $image->getClientOriginalExtension();
-        $location = public_path('images/work-images/' . $fileName);
-        Image::make($image)->resize(640, 400)->save($location);
+        // if validation passes check for how many works are stored...
+        if($work_count <= 2) {
+            // if no of stored works are below or equal to 3 then
+            // store the record in the database...
+            $image = $request->file('workImage');
+            $fileName = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/work-images/' . $fileName);
+            Image::make($image)->resize(640, 400)->save($location);
 
-        $work = new Work;
-        $work->title = $request->title;
-        $work->description = $request->description;
-        $work->image = $fileName;
-        $work->save();
+            $work = new Work;
+            $work->title = $request->title;
+            $work->description = $request->description;
+            $work->image = $fileName;
+            $work->save();
 
-        // sending a response to the ajax...
-        return 'success';
+            // sending a response to the ajax...
+            return 'success';
+        } else {
+            // if no of stored works are more than 3 then do not
+            // store the record in the database...
+            return 'more than 3 works';
+        }
 
     }
 

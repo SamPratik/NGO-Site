@@ -18,6 +18,7 @@
 
   </style>
 	{{ Html::style('css/toast.css') }}
+	{{ Html::style('css/toast-fail.css') }}
 @endpush
 
 @section('content')
@@ -52,7 +53,12 @@
 
 {{-- success alert message --}}
 @component('components.success-alert')
-	New work has been added successfully!
+	Work has been added successfully!
+@endcomponent
+
+{{-- fail alert message --}}
+@component('components.fail-alert')
+	You cannot add more than 3 works!
 @endcomponent
 
 {{-- storing work in database --}}
@@ -107,6 +113,12 @@
 						if(data === "success") {
 							document.getElementById("addWorkForm").reset();
 							var x = document.getElementById("snackbar");
+							x.className = "show";
+							setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+						}
+						if(data === "more than 3 works") {
+							document.getElementById("addWorkForm").reset();
+							var x = document.getElementById("snackbarFail");
 							x.className = "show";
 							setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 						}
