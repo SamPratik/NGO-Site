@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Image;
 use Validator;
+use Purifier;
 use App\Work as Work;
 
 class WorkController extends Controller
@@ -72,7 +73,7 @@ class WorkController extends Controller
 
             $work = new Work;
             $work->title = $request->title;
-            $work->description = $request->description;
+            $work->description = Purifier::clean($request->description);
             $work->image = $fileName;
             $work->save();
 

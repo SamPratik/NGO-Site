@@ -58,60 +58,31 @@
           </span>
         </h2><br><br>
         <div class="row">
-          <div class="col-md-4">
-            <div class="card work-panel">
-              <img class="card-img-top" src="https://picsum.photos/640/400?image=26" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title card-caption">
-                  <span>Card title</span>
-                  @auth
-                  <span class="pull-right">
-                    <button type="button" class="btn btn-outline-warning btn-sm" onclick="window.location.href='{{ route('works.edit', [1]) }}'"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
-                  </span>
-                  @endauth
-                </h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. This line will create another line. This line will create another line. This line will create another line...</p>
-                <a href="{{ route('works.show', [1]) }}" class="btn btn-outline-primary"><i class="fa fa-info-circle"></i> Read More</a>
+            @foreach ($works as $work)
+            <div class="col-md-4">
+              <div class="card work-panel">
+                <img class="card-img-top" src="{{ asset('images/work-images/' . $work->image )}}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title card-caption">
+                    <span>{{ $work->title }}</span>
+                    @auth
+                    <span class="pull-right">
+                      <button type="button" class="btn btn-outline-warning btn-sm" onclick="window.location.href='{{ route('works.edit', [1]) }}'"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                      <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                    </span>
+                    @endauth
+                  </h5>
+                  @php
+                  // $start = strpos($work->description, '<p>');
+                  // $end = strpos($work->description, '</p>', $start);
+                  // $paragraph = substr($work->description, $start, $end-$start+4);
+                  @endphp
+                  <p class="card-text">{!! $work->description !!}...</p>
+                  <a href="{{ route('works.show', [1]) }}" class="btn btn-outline-primary"><i class="fa fa-info-circle"></i> Read More</a>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card work-panel">
-              <img class="card-img-top" src="https://picsum.photos/640/400?image=46" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title card-caption">
-                  <span>Card title</span>
-                  @auth
-                  <span class="pull-right">
-                    <button type="button" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
-                  </span>
-                  @endauth
-                </h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. This line will create another line. This line will create another line. This line will create another line...</p>
-                <a href="#" class="btn btn-outline-primary"><i class="fa fa-info-circle"></i> Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card work-panel">
-              <img class="card-img-top" src="https://picsum.photos/640/400?image=36" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title card-caption">
-                  <span>Card title</span>
-                  @auth
-                  <span class="pull-right">
-                    <button type="button" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
-                  </span>
-                  @endauth
-                </h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. This line will create another line. This line will create another line. This line will create another line...</p>
-                <a href="#" class="btn btn-outline-primary"><i class="fa fa-info-circle"></i> Read More</a>
-              </div>
-            </div>
-          </div>
+            @endforeach
         </div> {{-- .row --}}
       </div>
     </div>
