@@ -64,7 +64,7 @@
                 <img class="card-img-top" src="{{ asset('images/work-images/' . $work->image )}}" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title card-caption">
-                    <span>{{ $work->title }}</span>
+                    <span>{{ (strlen($work->title) > 15) ? substr($work->title, 0, 15) . '...' : $work->title }}</span>
                     @auth
                     <span class="pull-right">
                       <button type="button" class="btn btn-outline-warning btn-sm" onclick="window.location.href='{{ route('works.edit', [1]) }}'"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
@@ -73,11 +73,9 @@
                     @endauth
                   </h5>
                   @php
-                  // $start = strpos($work->description, '<p>');
-                  // $end = strpos($work->description, '</p>', $start);
-                  // $paragraph = substr($work->description, $start, $end-$start+4);
+                      $description = strip_tags($work->description);
                   @endphp
-                  <p class="card-text">{!! $work->description !!}...</p>
+                  <p class="card-text">{{ (strlen($description) > 200) ? substr($description, 0, 200) . '...' : $description }}</p>
                   <a href="{{ route('works.show', [1]) }}" class="btn btn-outline-primary"><i class="fa fa-info-circle"></i> Read More</a>
                 </div>
               </div>
