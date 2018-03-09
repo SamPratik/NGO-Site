@@ -107,7 +107,8 @@ class WorkController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.works.edit');
+        $work = Work::find($id);
+        return view('admin.works.edit', ['work' => $work]);
     }
 
     /**
@@ -119,7 +120,39 @@ class WorkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // validation rules...
+        $rules = [
+            'title' => 'required|max:191',
+            'workImage' => 'image',
+            'description' => 'required',
+        ];
+        // custom validation messages...
+        $messages = [
+            'workImage.image' => 'Display image must be an image'
+        ];
+        // validator instance...
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        // if validation fails return error messages...
+        if($validator->fails()) {
+          // adding an additional field called 'error'...
+          $validator->errors()->add('error', 'true');
+          return response()->json($validator->errors());
+        }
+
+        $work = Work::find($id);
+        $work->title = $request->title;
+        $work->description = $request->description;
+
+        if($request->hasFile('workImage')) {
+            $image = $request->file('workImage');
+            $fileName = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/work-images/' . $fileName);
+            Image::make($image)->resize(640, 400)->save($location);
+            $work->image = $fileName;
+        }
+        $work->save();
+        return 'success';
     }
 
     /**

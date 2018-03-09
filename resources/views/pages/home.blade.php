@@ -67,7 +67,7 @@
                     <span>{{ (strlen($work->title) > 15) ? substr($work->title, 0, 15) . '...' : $work->title }}</span>
                     @auth
                     <span class="pull-right">
-                      <button type="button" class="btn btn-outline-warning btn-sm" onclick="window.location.href='{{ route('works.edit', [1]) }}'"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                      <button type="button" class="btn btn-outline-warning btn-sm" onclick="window.location.href='{{ route('works.edit', [$work->id]) }}'"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
                       <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
                     </span>
                     @endauth
