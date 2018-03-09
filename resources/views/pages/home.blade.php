@@ -76,7 +76,7 @@
                       $description = strip_tags($work->description);
                   @endphp
                   <p class="card-text">{{ (strlen($description) > 200) ? substr($description, 0, 200) . '...' : $description }}</p>
-                  <a href="{{ route('works.show', [1]) }}" class="btn btn-outline-primary"><i class="fa fa-info-circle"></i> Read More</a>
+                  <a href="{{ route('works.show', [$work->id]) }}" class="btn btn-outline-primary"><i class="fa fa-info-circle"></i> Read More</a>
                 </div>
               </div>
             </div>

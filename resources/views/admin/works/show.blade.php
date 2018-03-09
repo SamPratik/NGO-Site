@@ -12,7 +12,7 @@
   @parent
   <div class="work-show-container">
     <div class="container">
-      <h1>Here you show the details of the work...</h1>
+      {!! $work->description !!}
     </div>
   </div>
 @endsection

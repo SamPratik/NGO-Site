@@ -95,7 +95,8 @@ class WorkController extends Controller
      */
     public function show($id)
     {
-        return view('admin.works.show');
+        $work = Work::find($id);
+        return view('admin.works.show', ['work' => $work]);
     }
 
     /**
