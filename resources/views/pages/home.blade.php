@@ -72,11 +72,8 @@
                     </span>
                     @endauth
                   </h5>
-                  @php
-                     $description = strip_tags($work->description);
-                  @endphp
 
-                  <p class="card-text">{!! (strlen($description) > 200) ? substr($description, 0, 200) . '...' : $description !!}</p>
+                  <p class="card-text">{!! $work->summary !!}</p>
                   <a href="{{ route('works.show', [$work->id]) }}" class="btn btn-outline-primary"><i class="fa fa-info-circle"></i> Read More</a>
                 </div>
               </div>

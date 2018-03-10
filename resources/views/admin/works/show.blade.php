@@ -16,6 +16,9 @@
   @parent
   <div class="work-show-container">
     <div class="container">
+      <div class="card card-block bg-faded text-center">
+           <h1>{{ $work->title }}</h1>
+      </div><br>
       {!! $work->description !!}
     </div>
   </div>

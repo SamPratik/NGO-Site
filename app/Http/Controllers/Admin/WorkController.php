@@ -47,6 +47,7 @@ class WorkController extends Controller
             'title' => 'required|max:191',
             'workImage' => 'image',
             'description' => 'required',
+            'summary' => 'required|max:250'
         ];
         // custom validation messages...
         $messages = [
@@ -75,6 +76,7 @@ class WorkController extends Controller
             $work->title = $request->title;
             $work->description = $request->description;
             $work->image = $fileName;
+            $work->summary = $request->summary;
             $work->save();
 
             // sending a response to the ajax...
@@ -124,6 +126,7 @@ class WorkController extends Controller
         $rules = [
             'title' => 'required|max:191',
             'description' => 'required',
+            'summary' => 'required|max:250'
         ];
 
         // validator instance...
@@ -139,6 +142,7 @@ class WorkController extends Controller
         $work = Work::find($id);
         $work->title = $request->title;
         $work->description = $request->description;
+        $work->summary = $request->summary;
 
         if($request->hasFile('workImage')) {
             $image = $request->file('workImage');

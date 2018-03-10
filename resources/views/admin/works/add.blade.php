@@ -38,6 +38,11 @@
 					<span style="margin-left:20px;">[upload 640X400 image for better quality]</span>
 					<p class="error-message"></p>
 				</div>
+				<div class="form-group">
+					<label for=""><strong>Summary</strong></label>
+          <textarea id="summary" class="form-control" name="summary" rows="5" cols="80"></textarea>
+					<p class="error-message"></p>
+        </div>
         <div class="form-group">
           <label for=""><strong>Description</strong></label>
           <textarea id="description" class="form-control" name="description" rows="25" cols="80"></textarea>
@@ -78,7 +83,8 @@
 				var file_data = $("#workImage").prop('files')[0];
 				var title = $("#title").val();
 				var description = $("#description").val();
-				console.log(file_data);
+				var summary = $("#summary").val();
+				// console.log(file_data);
 
 				// creating form data object of the form...
 				var fd = new FormData();
@@ -86,6 +92,7 @@
 				fd.append('workImage', file_data);
 				fd.append('title', title);
 				fd.append('description', description);
+				fd.append('summary', summary);
 				$.ajaxSetup({
             headers: {
                 'X-CSRF-Token': $('meta[name=_token]').attr('content')
@@ -131,8 +138,11 @@
 							if(typeof data.workImage != 'undefined') {
 								em[1].innerHTML = data.workImage[0];
 							}
+							if(typeof data.summary != 'undefined') {
+								em[2].innerHTML = data.summary[0];
+							}
 							if(typeof data.description != 'undefined') {
-								em[2].innerHTML = data.description[0];
+								em[3].innerHTML = data.description[0];
 							}
 						}
 					}
