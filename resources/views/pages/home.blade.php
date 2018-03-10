@@ -57,7 +57,7 @@
             @endauth
           </span>
         </h2><br><br>
-        <div class="row">
+        <div id="works" class="row">
             @foreach ($works as $work)
             <div class="col-md-4">
               <div class="card work-panel">
@@ -68,14 +68,15 @@
                     @auth
                     <span class="pull-right">
                       <button type="button" class="btn btn-outline-warning btn-sm" onclick="window.location.href='{{ route('works.edit', [$work->id]) }}'"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
-                      <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                      <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteWork({{ $work->id }})"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
                     </span>
                     @endauth
                   </h5>
                   @php
-                      $description = strip_tags($work->description);
+                     $description = strip_tags($work->description);
                   @endphp
-                  <p class="card-text">{{ (strlen($description) > 200) ? substr($description, 0, 200) . '...' : $description }}</p>
+
+                  <p class="card-text">{!! (strlen($description) > 200) ? substr($description, 0, 200) . '...' : $description !!}</p>
                   <a href="{{ route('works.show', [$work->id]) }}" class="btn btn-outline-primary"><i class="fa fa-info-circle"></i> Read More</a>
                 </div>
               </div>
@@ -148,10 +149,36 @@
                     // document.getElementById("aboutUsForm").reset();
                     // fades in a toast for 3 seconds...
                     var x = document.getElementById("snackbar");
+                    x.innerHTML = "Successfully updated!";
                     x.className = "show";
                     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                 }
             );
+        }
+
+        // deleting work...
+        function deleteWork(id) {
+            var c = confirm("Are you sure you want to delete this item?");
+
+            if(c == true) {
+                $.ajax({
+                    url: 'works/delete/' + id,
+                    type: 'GET',
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        console.log(data);
+                        if(data === "success") {
+                            $("#works").load(location.href + " #works");
+                            var x = document.getElementById("snackbar");
+                            x.innerHTML = "Successfully deleted!";
+    						x.className = "show";
+    						setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                        }
+                    }
+                });
+            }
+
         }
     </script>
 @endpush
@@ -159,6 +186,5 @@
 {{-- Toast component fires after about us section update --}}
 @auth
 @component('components.success-alert')
-    Successfully updated!
 @endcomponent
 @endauth
