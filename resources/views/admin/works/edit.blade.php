@@ -99,7 +99,6 @@
 					// if work is stored in database successfully, then show the
 					// success toast...
 					if(data === "success") {
-						document.getElementById("addWorkForm").reset();
 						var x = document.getElementById("snackbar");
 						x.className = "show";
 						setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);

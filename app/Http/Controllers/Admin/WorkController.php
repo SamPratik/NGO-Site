@@ -123,15 +123,11 @@ class WorkController extends Controller
         // validation rules...
         $rules = [
             'title' => 'required|max:191',
-            'workImage' => 'image',
             'description' => 'required',
         ];
-        // custom validation messages...
-        $messages = [
-            'workImage.image' => 'Display image must be an image'
-        ];
+
         // validator instance...
-        $validator = Validator::make($request->all(), $rules, $messages);
+        $validator = Validator::make($request->all(), $rules);
 
         // if validation fails return error messages...
         if($validator->fails()) {

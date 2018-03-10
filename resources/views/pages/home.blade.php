@@ -2,7 +2,7 @@
 
 {{-- Custom external CSS --}}
 @push('styles')
-    {{ Html::style('css/home/styles.css') }}
+    {{-- {{ Html::style('css/home/styles.css') }} --}}
     {{ Html::style('css/home/header.slider.css') }}
     {{ Html::style('css/home/about-us.css') }}
     {{ Html::style('css/home/our-work.css') }}
