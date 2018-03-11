@@ -11,86 +11,25 @@
           @endauth
         </h2>
         <div class="list-group notice-list">
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start notice-link">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small style="width:60px;">3 days ago</small>
-            </div>
-            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            <p>
-              <small><strong>24 January, 2017</strong></small>
-              @auth
-              <span class="pull-right">
-                <button class="btn btn-outline-warning btn-sm" onclick="window.location.href='{{ route('notices.edit', [1]) }}'"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
-                <button class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
-              </span>
-              @endauth
-            </p>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start notice-link">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small style="width:60px;">3 days ago</small>
-            </div>
-            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            <p>
-              <small>Donec id elit non mi porta.</small>
-              @auth
+          @foreach ($notices as $notice)
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start notice-link">
+              <div class="d-flex w-100 justify-content-between">
+                <p class="mb-1">{{ $notice->title }}</p>
+              </div>
+              <p>
+                @php
+                  $time = strtotime($notice->updated_at)
+                @endphp
+                <small><strong>{{ date('d F, Y',$time) }}</strong></small>
+                @auth
                 <span class="pull-right">
-                  <button type="button" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
-                  <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                  <button class="btn btn-outline-warning btn-sm" onclick="window.location.href='{{ route('notices.edit', [1]) }}'"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                  <button class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
                 </span>
-              @endauth
-            </p>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start notice-link">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small style="width:60px;">3 days ago</small>
-            </div>
-            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            <p>
-              <small>Donec id elit non mi porta.</small>
-              @auth
-                <span class="pull-right">
-                  <button type="button" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
-                  <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
-                </span>
-              @endauth
-            </p>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start notice-link">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small style="width:60px;">3 days ago</small>
-            </div>
-            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            <p>
-              <small>Donec id elit non mi porta.</small>
-              @auth
-                <span class="pull-right">
-                  <button type="button" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
-                  <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
-                </span>
-              @endauth
-            </p>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start notice-link">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small style="width:60px;">3 days ago</small>
-            </div>
-            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            <p>
-              <small>Donec id elit non mi porta.</small>
-              @auth
-                <span class="pull-right">
-                  <button type="button" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
-                  <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
-                </span>
-              @endauth
-            </p>
-          </a>
+                @endauth
+              </p>
+            </a>
+          @endforeach
         </div>
       </div>
       <div class="col-md-6 contact">

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\AboutUs as AboutUs;
 use App\Work as Work;
+use App\Notice as Notice;
 
 class HomeController extends Controller
 {
@@ -14,7 +15,8 @@ class HomeController extends Controller
     public function home() {
         $aboutUs = DB::table('about_us')->select('description')->where('id', 1)->get();
         $works = Work::all();
-        return view('pages.home', ['aboutUs' => $aboutUs, 'works' => $works]);
+        $notices = Notice::all();
+        return view('pages.home', ['aboutUs' => $aboutUs, 'works' => $works, 'notices' => $notices]);
     }
 
     // show about us text in the modal...

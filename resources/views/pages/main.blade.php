@@ -32,7 +32,7 @@
     @show
 
     {{-- Contact us & Notice Section --}}
-    @includeif('partials.contact-notice')
+    {{-- @includeif('partials.contact-notice') --}}
 
 
     {{-- Footer Section --}}

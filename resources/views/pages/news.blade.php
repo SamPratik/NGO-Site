@@ -156,4 +156,8 @@
       </div> {{-- .row --}}
     </div>
   </div>
+
+  
+  {{-- Contact us & Notice Section --}}
+  @includeif('partials.contact-notice', ['notices' => $notices])
 @endsection

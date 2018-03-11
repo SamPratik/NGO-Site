@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Validator;
+use App\Notice as Notice;
 
 class NoticeController extends Controller
 {
@@ -35,7 +37,27 @@ class NoticeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'title' => 'required|max:190',
+            'description' => 'required'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        // if validation fails return error messages...
+        if($validator->fails()) {
+          // adding an additional field called 'error'...
+          $validator->errors()->add('error', 'true');
+          return response()->json($validator->errors());
+        }
+
+        $notice = new Notice;
+        $notice->title = $request->title;
+        $notice->description = $request->description;
+        $notice->save();
+
+        return "success";
+
     }
 
     /**
