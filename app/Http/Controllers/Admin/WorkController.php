@@ -9,6 +9,7 @@ use Image;
 use Validator;
 // use Purifier;
 use App\Work as Work;
+use App\Notice as Notice;
 
 class WorkController extends Controller
 {
@@ -98,7 +99,8 @@ class WorkController extends Controller
     public function show($id)
     {
         $work = Work::find($id);
-        return view('admin.works.show', ['work' => $work]);
+        $notices = Notice::all();
+        return view('admin.works.show', ['work' => $work, 'notices' => $notices]);
     }
 
     /**

@@ -68,7 +68,9 @@ class NoticeController extends Controller
      */
     public function show($id)
     {
-        //
+        $notice = Notice::find($id);
+        $notices = Notice::all();
+        return view('admin.notices.show', ['notice' => $notice, 'notices' => $notices]);
     }
 
     /**

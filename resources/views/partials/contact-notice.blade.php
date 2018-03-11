@@ -12,7 +12,7 @@
         </h2>
         <div class="list-group notice-list">
           @foreach ($notices as $notice)
-            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start notice-link">
+            <a href="{{ route('notices.show', $notice->id) }}" class="list-group-item list-group-item-action flex-column align-items-start notice-link">
               <div class="d-flex w-100 justify-content-between">
                 <p class="mb-1">{{ $notice->title }}</p>
               </div>
