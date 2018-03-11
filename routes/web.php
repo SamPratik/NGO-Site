@@ -45,7 +45,12 @@ Route::post('works/{works}', 'Admin\WorkController@update')->name('works.update'
 Route::get('works/delete/{work}', 'Admin\WorkController@destroy')->name('works.delete');
 
 // Notice routes
-Route::resource('notices', 'Admin\NoticeController');
+Route::resource('notices', 'Admin\NoticeController', ['except' => [
+    'index',
+    'update'
+]]);
+Route::post('notices/{notice}', 'Admin\NoticeController@update');
+
 
 // News routes
 Route::resource('news', 'Admin\NewsController', ['except' => [

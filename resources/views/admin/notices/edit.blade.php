@@ -1,7 +1,17 @@
 @extends('pages.main')
 
 @push('styles')
-  {{ Html::style('css/admin/add-notice.css') }}
+	<style>
+		.add-notice-form-container {
+			padding:70px;
+		}
+		.error-message {
+			font-weight: bold;
+			color: red;
+			font-size: 20px;
+		}
+	</style>
+	{{ Html::style('css/toast.css') }}
 @endpush
 
 @section('content')
@@ -9,14 +19,17 @@
   <div class="add-notice-form-container">
     <div class="container">
       <h2 class="text-center">Edit Notice</h2>
-      <form class="" action="index.html" method="post">
+      <form class="" onsubmit="updateNotice(event)">
+				{{ csrf_field() }}
         <div class="form-group">
           <label for=""><strong>Title</strong></label>
-          <input type="text" class="form-control" placeholder="max 30 characters...">
-        </div>
+          <input id="title" name="title" type="text" class="form-control" value="{{ $notice->title }}">
+					<p class="error-message"></p>
+				</div>
         <div class="form-group">
           <label for=""><strong>Description</strong></label>
-          <textarea name="name" class="form-control" rows="25" cols="80"></textarea>
+          <textarea id="description" name="description" class="form-control" rows="25" cols="80">{{ $notice->description }}</textarea>
+					<p class="error-message"></p>
         </div>
 				<div class="form-group text-center">
 				  <input type="submit" value="Update Notice" class="btn btn-outline-primary" style="width:200px;">
@@ -26,6 +39,68 @@
     </div>
   </div>
 @endsection
+
+@component('components.success-alert')
+	Notice has been updated successfully!
+@endcomponent
+
+{{-- updating  --}}
+@push('scripts')
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		function updateNotice(e) {
+			e.preventDefault();
+			// use this when you are using ajax call to send tinymce content
+			// to the laravel controller...
+			tinyMCE.triggerSave();
+			var title = $("#title").val();
+			var description = $("#description").val();
+			var _token = $("input[name='_token']").val();
+
+			// console.log(title + '\n' + description);
+			var fd = new FormData();
+			fd.append('_token', _token);
+			fd.append('title', title);
+			fd.append('description', description);
+
+			$.ajax({
+				url: '{{ route('notices.update', $notice->id) }}',
+				type: 'POST',
+				data: fd,
+				contentType: false,
+				processData: false,
+				success: function(data) {
+					console.log(data);
+					var em = document.getElementsByClassName("error-message");
+
+					// after returning from the controller we are clearing the
+					// previous error messages...
+					for(i=0; i<em.length; i++) {
+						em[i].innerHTML = '';
+					}
+
+					// if work is stored in database successfully, then show the
+					// success toast...
+					if(data === "success") {
+						var x = document.getElementById("snackbar");
+						x.className = "show";
+						setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+					}
+
+					// Showing error messages in the HTML...
+					if(typeof data.error != 'undefined') {
+						if(typeof data.title != 'undefined') {
+							em[0].innerHTML = data.title[0];
+						}
+						if(typeof data.description != 'undefined') {
+							em[1].innerHTML = data.description[0];
+						}
+					}
+				}
+			});
+		}
+	</script>
+@endpush
 
 @push('scripts')
 	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>

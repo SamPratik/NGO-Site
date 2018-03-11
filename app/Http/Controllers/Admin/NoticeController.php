@@ -79,7 +79,8 @@ class NoticeController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.notices.edit', ['id' => $id]);
+        $notice = Notice::find($id);
+        return view('admin.notices.edit', ['notice' => $notice]);
     }
 
     /**
@@ -91,7 +92,24 @@ class NoticeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'title' => 'required',
+            'description' => 'required'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if($validator->fails()) {
+            $validator->errors()->add('error', 'true');
+            return response()->json($validator->errors());
+        }
+
+        $notice = Notice::find($id);
+        $notice->title = $request->title;
+        $notice->description = $request->description;
+        $notice->save();
+
+        return "success";
     }
 
     /**
