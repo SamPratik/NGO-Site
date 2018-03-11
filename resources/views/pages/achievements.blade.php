@@ -23,7 +23,7 @@
       @endauth
       <div class="row">
         <div class="col-md-4">
-          <div class="card">
+          <div class="card achievement">
             <img class="card-img-top" src="https://picsum.photos/640/400?image=30" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Card title <small class="pull-right">24 January, 2017</small></h5>

@@ -15,7 +15,7 @@
         <a href="#" class="nav-link">About US</a>
       </li>
       <li class="nav-item">
-        <a href="{{ route('achievements') }}" class="nav-link">Achievements</a>
+        <a href="{{ route('achievemetns.index') }}" class="nav-link">Achievements</a>
       </li>
       <li class="nav-item">
         <a href="#" class="nav-link">Our Work</a>

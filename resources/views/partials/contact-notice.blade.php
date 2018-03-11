@@ -21,13 +21,14 @@
                   $time = strtotime($notice->updated_at)
                 @endphp
                 <small><strong>{{ date('d F, Y',$time) }}</strong></small>
-                @auth
+
                 <span class="pull-right">
                   <button class="btn btn-outline-success btn-sm" type="button" onclick="window.location.href='{{ route('notices.show', $notice->id) }}'">Details</button>
+                  @auth
                   <button class="btn btn-outline-warning btn-sm" onclick="window.location.href='{{ route('notices.edit', [$notice->id]) }}'"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
                   <button class="btn btn-outline-danger btn-sm" type="button" onclick="deleteNotice({{ $notice->id }})"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                  @endauth
                 </span>
-                @endauth
               </p>
             </a>
           @endforeach

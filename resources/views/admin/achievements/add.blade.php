@@ -1,11 +1,20 @@
 @extends('pages.main')
+@section('meta-ajax')
+	<meta name="_token" content="{{ csrf_token() }}" />
+@endsection
 
 @push('styles')
 	<style media="screen">
 		.add-achievements-form-container {
 			padding: 70px 0px 50px 0px;
 		}
+		.error-message {
+			font-weight: bold;
+			color: red;
+			font-size: 20px;
+		}
 	</style>
+	{{ Html::style('css/toast.css') }}
 @endpush
 
 @section('content')
@@ -13,18 +22,26 @@
   <div class="add-achievements-form-container">
     <div class="container">
       <h2 class="text-center">Add Achievement</h2>
-      <form class="" action="index.html" method="post">
+      <form id="addAchievementForm" class="" onsubmit="addAchievement(event)">
         <div class="form-group">
           <label for=""><strong>Title</strong></label>
-          <input type="text" class="form-control" placeholder="max 30 characters...">
+          <input id="title" name="title" type="text" class="form-control">
+					<p class="error-message"></p>
         </div>
 				<div class="form-group">
 					<label for=""><strong>Display image</strong></label>
-					<label class="btn btn-outline-success" style="width:200px;cursor:pointer;margin-left:10px;margin-top:5px;"><input style="display:none;" type="file" />Choose File</label>
+					<label class="btn btn-outline-success" style="width:200px;cursor:pointer;margin-left:10px;margin-top:5px;"><input id="achImage" name="achImage" style="display:none;" type="file" />Choose File</label>
+					<p class="error-message"></p>
 				</div>
+				<div class="form-group">
+          <label for=""><strong>Summary</strong></label>
+          <textarea id="summary" name="summary" class="form-control" rows="5" cols="80"></textarea>
+					<p class="error-message"></p>
+        </div>
         <div class="form-group">
           <label for=""><strong>Description</strong></label>
-          <textarea name="name" class="form-control" rows="25" cols="80"></textarea>
+          <textarea id="description" name="description" class="form-control" rows="25" cols="80"></textarea>
+					<p class="error-message"></p>
         </div>
 				<div class="form-group text-center">
 				  <input type="submit" value="Add Achievement" class="btn btn-outline-primary" style="width:200px;">
@@ -35,12 +52,93 @@
   </div>
 @endsection
 
+@component('components.success-alert')
+
+@endcomponent
+
+{{-- storing achievement in database --}}
+@push('scripts')
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		function addAchievement(e) {
+				e.preventDefault();
+				// use this when you are using ajax call to send tinymce content
+				// to the laravel controller...
+				tinyMCE.triggerSave();
+
+				var file_data = $("#achImage").prop('files')[0];
+				var title = $("#title").val();
+				var description = $("#description").val();
+				var summary = $("#summary").val();
+				// console.log(file_data);
+
+				// creating form data object of the form...
+				var fd = new FormData();
+				// appending the image to the form data...
+				fd.append('achImage', file_data);
+				fd.append('title', title);
+				fd.append('description', description);
+				fd.append('summary', summary);
+				$.ajaxSetup({
+            headers: {
+                'X-CSRF-Token': $('meta[name=_token]').attr('content')
+            }
+        });
+				$.ajax({
+					url: '{{ route('achievemetns.store') }}',
+					data: fd,
+					type: 'POST',
+					contentType: false,
+					processData: false,
+					success: function(data) {
+						// showing the response came from the laravel controller...
+						console.log(data);
+						var em = document.getElementsByClassName("error-message");
+
+						// after returning from the controller we are clearing the
+						// previous error messages...
+						for(i=0; i<em.length; i++) {
+							em[i].innerHTML = '';
+						}
+
+						// if work is stored in database successfully, then show the
+						// success toast...
+						if(data === "success") {
+							document.getElementById("addAchievementForm").reset();
+							var x = document.getElementById("snackbar");
+							x.innerHTML = "Achievement added successfully!";
+							x.className = "show";
+							setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+						}
+
+						// Showing error messages in the HTML...
+						if(typeof data.error != 'undefined') {
+							if(typeof data.title != 'undefined') {
+								em[0].innerHTML = data.title[0];
+							}
+							if(typeof data.achImage != 'undefined') {
+								em[1].innerHTML = data.achImage[0];
+							}
+							if(typeof data.summary != 'undefined') {
+								em[2].innerHTML = data.summary[0];
+							}
+							if(typeof data.description != 'undefined') {
+								em[3].innerHTML = data.description[0];
+							}
+						}
+					}
+				});
+
+		}
+	</script>
+@endpush
+
 @push('scripts')
 	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
   <script>
 	  var editor_config = {
 	    path_absolute : "{{ URL::to('/') }}/",
-	    selector: "textarea",
+	    selector: "textarea#description",
 	    plugins: [
 	      "advlist autolink lists link image charmap print preview hr anchor pagebreak",
 	      "searchreplace wordcount visualblocks visualchars code fullscreen",

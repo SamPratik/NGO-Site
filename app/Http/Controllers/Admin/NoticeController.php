@@ -95,7 +95,7 @@ class NoticeController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'title' => 'required',
+            'title' => 'required|max:190',
             'description' => 'required'
         ];
 

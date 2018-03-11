@@ -1,3 +1,7 @@
 .achievements-container {
   padding: 50px 0px;
 }
+
+.achievement {
+  height: 430px;
+}

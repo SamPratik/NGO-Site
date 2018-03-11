@@ -20,10 +20,6 @@ Route::get('/news', function() {
     return view('pages.news');
 })->name('news');
 
-Route::get('/achievements', function() {
-    return view('pages.achievements');
-})->name('achievements');
-
 
 //========= Admin Routes ==========
 // Authentication routes...
@@ -60,6 +56,4 @@ Route::resource('news', 'Admin\NewsController', ['except' => [
 ]]);
 
 // Achievements routes...
-Route::resource('achievemetns', 'Admin\AchievementsController', ['except' => [
-    'index'
-]]);
+Route::resource('achievemetns', 'Admin\AchievementsController');
