@@ -1,4 +1,4 @@
-<section class="contact-notice">
+<section id="contactNotice" class="contact-notice">
   <div class="container contact-notice-container">
     <div class="row">
       <div class="col-md-6 notice">
@@ -10,9 +10,9 @@
           </a>
           @endauth
         </h2>
-        <div class="list-group notice-list">
+        <div id="notices" class="list-group notice-list">
           @foreach ($notices as $notice)
-            <a href="{{ route('notices.show', $notice->id) }}" class="list-group-item list-group-item-action flex-column align-items-start notice-link">
+            <a href="#contactNotice" class="list-group-item list-group-item-action flex-column align-items-start notice-link">
               <div class="d-flex w-100 justify-content-between">
                 <p class="mb-1">{{ $notice->title }}</p>
               </div>
@@ -23,8 +23,9 @@
                 <small><strong>{{ date('d F, Y',$time) }}</strong></small>
                 @auth
                 <span class="pull-right">
+                  <button class="btn btn-outline-success btn-sm" type="button" onclick="window.location.href='{{ route('notices.show', $notice->id) }}'">Details</button>
                   <button class="btn btn-outline-warning btn-sm" onclick="window.location.href='{{ route('notices.edit', [$notice->id]) }}'"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
-                  <button class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                  <button class="btn btn-outline-danger btn-sm" type="button" onclick="deleteNotice({{ $notice->id }})"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
                 </span>
                 @endauth
               </p>
@@ -104,3 +105,32 @@
   </div>
 </div>
 </div>
+
+@component('components.success-alert')
+@endcomponent
+
+@push('scripts')
+  <script>
+    function deleteNotice(id) {
+      var c = confirm("Are you sure you want to delete this notice?");
+      if(c == true) {
+        $.ajax({
+          url: 'notices/delete/' + id,
+          type: 'GET',
+          contentType: false,
+          processData: false,
+          success: function(data) {
+            console.log(data);
+            if(data === "success") {
+              $("#notices").load(location.href + " #notices");
+              var x = document.getElementById("snackbar");
+              x.innerHTML = "Successfully deleted!";
+        			x.className = "show";
+        			setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+            }
+          }
+        });
+      }
+    }
+  </script>
+@endpush

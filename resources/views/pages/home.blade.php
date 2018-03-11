@@ -118,7 +118,6 @@
 @endauth
 
 
-{{-- updating about us JS function --}}
 @push('scripts')
     <script>
         // showing about us description when clicked on update button...
@@ -172,8 +171,8 @@
                             $("#works").load(location.href + " #works");
                             var x = document.getElementById("snackbar");
                             x.innerHTML = "Successfully deleted!";
-    						x.className = "show";
-    						setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+      						x.className = "show";
+      						setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                         }
                     }
                 });
