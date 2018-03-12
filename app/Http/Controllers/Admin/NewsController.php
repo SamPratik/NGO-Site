@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\News as News;
+use App\Notice as Notice;
+use Validator;
+use Image;
 
 class NewsController extends Controller
 {
@@ -14,7 +18,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        $notices = Notice::all();
+        $news = News::latest()->simplePaginate(9);
+        return view('pages.news', ['notices' => $notices, 'news' => $news]);
     }
 
     /**
@@ -35,7 +41,45 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // validation rules...
+        $rules = [
+            'title' => 'required|max:190',
+            'newsImage' => 'image',
+            'description' => 'required',
+            'summary' => 'required|max:250'
+        ];
+
+        // Custom validation messages...
+        $messages = [
+            'newsImage.image' => 'Display image is required'
+        ];
+
+        // validator instance...
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        // if validation fails return error messages...
+        if($validator->fails()) {
+          // adding an additional field called 'error'...
+          $validator->errors()->add('error', 'true');
+          return response()->json($validator->errors());
+        }
+        // if no of stored works are below or equal to 3 then
+        // store the record in the database...
+        $image = $request->file('newsImage');
+        $fileName = time() . '.' . $image->getClientOriginalExtension();
+        $location = public_path('images/news-images/' . $fileName);
+        Image::make($image)->resize(640, 400)->save($location);
+
+        $news = new News;
+        $news->title = $request->title;
+        $news->description = $request->description;
+        $news->image = $fileName;
+        $news->summary = $request->summary;
+        $news->save();
+
+        // sending a response to the ajax...
+        return 'success';
     }
 
     /**

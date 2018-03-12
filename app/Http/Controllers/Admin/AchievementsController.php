@@ -19,7 +19,7 @@ class AchievementsController extends Controller
     public function index()
     {
         $notices = Notice::all();
-        $achievements = Achievement::simplePaginate(9);
+        $achievements = Achievement::latest()->simplePaginate(9);
         return view('pages.achievements', ['achievements' => $achievements,'notices' => $notices]);
     }
 

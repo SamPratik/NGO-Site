@@ -21,7 +21,7 @@
         <a href="#" class="nav-link">Our Work</a>
       </li>
       <li class="nav-item">
-        <a href="{{ route('news') }}" class="nav-link">News</a>
+        <a href="{{ route('news.index') }}" class="nav-link">News</a>
       </li>
       <li class="nav-item">
         <a href="#" class="nav-link">Notice</a>

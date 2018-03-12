@@ -16,10 +16,6 @@ Route::get('/', 'Admin\HomeController@home')->name('home');
 Route::get('/aboutus-text', 'Admin\HomeController@aboutUsText')->name('aboutus-text');
 Route::post('/about-us', 'Admin\HomeController@updateAboutUs')->name('update.about-us');
 
-Route::get('/news', function() {
-    return view('pages.news');
-})->name('news');
-
 
 //========= Admin Routes ==========
 // Authentication routes...
@@ -51,9 +47,7 @@ Route::get('notices/delete/{notice}', 'Admin\NoticeController@destroy')->name('n
 
 
 // News routes
-Route::resource('news', 'Admin\NewsController', ['except' => [
-    'index'
-]]);
+Route::resource('news', 'Admin\NewsController');
 
 // Achievements routes...
 Route::resource('achievemetns', 'Admin\AchievementsController');
