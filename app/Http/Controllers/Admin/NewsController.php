@@ -101,7 +101,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.news.edit');
+        $new = News::find($id);
+        return view('admin.news.edit', ['new' => $new]);
     }
 
     /**
@@ -113,7 +114,37 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // validation rules...
+        $rules = [
+            'title' => 'required|max:191',
+            'description' => 'required',
+            'summary' => 'required|max:250'
+        ];
+
+        // validator instance...
+        $validator = Validator::make($request->all(), $rules);
+
+        // if validation fails return error messages...
+        if($validator->fails()) {
+          // adding an additional field called 'error'...
+          $validator->errors()->add('error', 'true');
+          return response()->json($validator->errors());
+        }
+
+        $new = News::find($id);
+        $new->title = $request->title;
+        $new->description = $request->description;
+        $new->summary = $request->summary;
+
+        if($request->hasFile('newsImage')) {
+            $image = $request->file('newsImage');
+            $fileName = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/news-images/' . $fileName);
+            Image::make($image)->resize(640, 400)->save($location);
+            $new->image = $fileName;
+        }
+        $new->save();
+        return 'success';
     }
 
     /**
