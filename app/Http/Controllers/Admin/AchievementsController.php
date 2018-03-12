@@ -155,6 +155,8 @@ class AchievementsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $achievement = Achievement::find($id);
+        $achievement->delete();
+        return 'success';
     }
 }

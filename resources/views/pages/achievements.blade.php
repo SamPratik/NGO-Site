@@ -3,6 +3,7 @@
 @push('styles')
   {{ Html::style('css/achievements/header.css') }}
   {{ Html::style('css/achievements/achievements-container.css') }}
+  {{ Html::style('css/toast.css') }}
 @endpush
 
 @section('content')
@@ -14,7 +15,7 @@
 
   {{-- Achievements container section --}}
   <div class="achievements-container">
-    <div class="container">
+    <div id="achievements" class="container">
       @auth
       <p>
         <button class="btn btn-outline-primary pull-right" type="button" name="button" onclick="window.location.href='{{ route('achievemetns.create') }}'"><i class="fa fa-plus" aria-hidden="true"></i> Add Achievement</button>
@@ -39,7 +40,7 @@
                 <p class="card-text">{{ $achievement->summary }}</p>
                 <a href="#" class="btn btn-outline-primary pull-right"><i class="fa fa-info-circle"></i> Read More</a>
                 @auth
-                <button style="margin-right:5px;" class="btn btn-outline-danger pull-right" type="button" name="button"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                <button onclick="deleteAchievement({{ $achievement->id }})" style="margin-right:5px;" class="btn btn-outline-danger pull-right" type="button" name="button"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
                 <button onclick="window.location.href='{{ route('achievemetns.edit', [$achievement->id]) }}'" style="margin-right:5px;" class="btn btn-outline-warning pull-right" type="button" name="button"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
                 @endauth
               </div>
@@ -59,3 +60,33 @@
   {{-- Contact us & Notice Section --}}
   @includeif('partials.contact-notice', ['notices' => $notices])
 @endsection
+
+@component('components.success-alert')
+@endcomponent
+
+@push('scripts')
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    function deleteAchievement(id) {
+      var c = confirm("Are you sure you want to delete this acheivement?");
+      if(c == true) {
+        $.ajax({
+          url: 'achievements/delete/' + id,
+          type: 'GET',
+          contentType: false,
+          processData: false,
+          success: function(data) {
+            console.log(data);
+            if(data === 'success') {
+              $("#achievements").load(location.href + " #achievements");
+              var x = document.getElementById("snackbar");
+							x.innerHTML = "Achievement deleted successfully!";
+							x.className = "show";
+							setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+            }
+          }
+        });
+      }
+    }
+  </script>
+@endpush

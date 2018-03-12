@@ -51,6 +51,8 @@ Route::resource('news', 'Admin\NewsController');
 
 // Achievements routes...
 Route::resource('achievemetns', 'Admin\AchievementsController', ['except' => [
-    'update'
+    'update',
+    'destroy'
 ]]);
 Route::post('achievements/update/{achievement}', 'Admin\AchievementsController@update')->name('achievements.update');
+Route::get('achievements/delete/{achievement}', 'Admin\AchievementsController@destroy')->name('achievements.destroy');
