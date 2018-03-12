@@ -1,5 +1,7 @@
 @extends('pages.main')
 
+@section('ActiveAchievements', 'active')
+
 @push('styles')
   <style media="screen">
     ul {

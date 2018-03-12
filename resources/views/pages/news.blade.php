@@ -1,5 +1,7 @@
 @extends('pages.main')
 
+@section('ActiveNews', 'active')
+
 @push('styles')
   <style media="screen">
     ul {

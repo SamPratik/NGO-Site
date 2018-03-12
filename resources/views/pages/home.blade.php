@@ -1,5 +1,7 @@
 @extends('pages.main')
 
+@section('ActiveHome', 'active')
+
 {{-- Custom external CSS --}}
 @push('styles')
     {{-- {{ Html::style('css/home/styles.css') }} --}}

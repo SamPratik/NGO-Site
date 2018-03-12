@@ -44,6 +44,13 @@ nav {
   color: #343a40 !important;
 }
 
+a.active {
+  /* background-color: #343a40; */
+  color: #343a40 !important;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
 nav li {
   margin-right: 10px;
 }

@@ -9,19 +9,19 @@
   <div class="collapse navbar-collapse links" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a href="{{ route('home') }}" class="nav-link">Home <span class="sr-only">(current)</span></a>
+        <a href="{{ route('home') }}" class="nav-link @yield('ActiveHome')">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a href="#" class="nav-link">About US</a>
       </li>
       <li class="nav-item">
-        <a href="{{ route('achievemetns.index') }}" class="nav-link">Achievements</a>
+        <a href="{{ route('achievemetns.index') }}" class="nav-link @yield('ActiveAchievements')">Achievements</a>
       </li>
       <li class="nav-item">
         <a href="#" class="nav-link">Our Work</a>
       </li>
       <li class="nav-item">
-        <a href="{{ route('news.index') }}" class="nav-link">News</a>
+        <a href="{{ route('news.index') }}" class="nav-link @yield('ActiveNews')">News</a>
       </li>
       <li class="nav-item">
         <a href="#" class="nav-link">Notice</a>
