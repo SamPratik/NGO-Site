@@ -41,11 +41,11 @@
           <button class="btn btn-sm btn-outline-primary pull-right" type="button" data-toggle="modal" data-target="#editContactModal"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
           @endauth
         </h2>
-        <div>
+        <div id="contactus">
           <p>Contact us and we'll get back to you within 24 hours.</p>
-          <p><strong><i class="fa fa-map-marker" aria-hidden="true"></i> Mirpur Cantonment, Dhaka</strong></p>
-          <p><strong><i class="fa fa-phone"></i> +880 1730-683164</strong></p>
-          <p><strong><i class="fa fa-envelope" aria-hidden="true"></i> lccmist@gmail.com</strong></p>
+          <p><strong><i class="fa fa-map-marker" aria-hidden="true"></i> {{ $contactus->address }}</strong></p>
+          <p><strong><i class="fa fa-phone"></i> {{ $contactus->phone }}</strong></p>
+          <p><strong><i class="fa fa-envelope" aria-hidden="true"></i> {{ $contactus->email }}</strong></p>
         </div>
         <form>
           <div class="row">
@@ -82,24 +82,25 @@
       </div>
       <div class="modal-body">
         <div class="container">
-          <form class="" method="post">
+          <form class="">
+            {{ csrf_field() }}
             <div class="form-group">
               <label for=""><strong>Address</strong></label>
-              <input type="text" class="form-control" placeholder="">
+              <input name="address" id="address" type="text" class="form-control" value="{{ $contactus->address }}">
             </div>
             <div class="form-group">
               <label for=""><strong>Phone</strong></label>
-              <input type="text" class="form-control" id="" placeholder="">
+              <input name="phone" value="{{ $contactus->phone }}" type="text" class="form-control" id="phone">
             </div>
             <div class="form-group">
               <label for=""><strong>Email</strong></label>
-              <input type="email" class="form-control" placeholder="">
+              <input name="email" value="{{ $contactus->email }}" id="email" type="email" class="form-control">
             </div>
           </form>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" name="button" class="btn btn-outline-primary">Save Changes</button>
+        <button onclick="updateContactUs()" type="button" name="button" class="btn btn-outline-primary">Save Changes</button>
         <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
       </div>
     </div>
@@ -110,6 +111,7 @@
 @component('components.success-alert')
 @endcomponent
 
+{{-- deleting notice --}}
 @push('scripts')
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script>
@@ -133,6 +135,40 @@
           }
         });
       }
+    }
+  </script>
+@endpush
+
+{{-- Updating contact us --}}
+@push('scripts')
+  <script>
+    function updateContactUs() {
+      var address = $("#address").val();
+      var phone = $("#phone").val();
+      var email = $("#email").val();
+      var _token = $("input[name='_token']").val();
+
+      // console.log(address + '\n' + phone + '\n' + email + '\n' + _token);
+
+      $.post(
+      '{{ route('contactus.update', 1) }}',
+        {
+          'address': address,
+          'phone': phone,
+          'email': email,
+          '_token': _token
+        },
+        function(data) {
+          console.log(data);
+          if(data === 'success') {
+            $("#contactus").load(location.href + " #contactus");
+            var x = document.getElementById("snackbar");
+            x.innerHTML = "Successfully updated!";
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+          }
+        }
+      );
     }
   </script>
 @endpush

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Notice as Notice;
 use App\Achievement as Achievement;
+use App\ContactUs as ContactUs;
 use Validator;
 use Image;
 
@@ -19,8 +20,9 @@ class AchievementsController extends Controller
     public function index()
     {
         $notices = Notice::all();
+        $contactus = ContactUs::find(1);
         $achievements = Achievement::latest()->simplePaginate(9);
-        return view('pages.achievements', ['achievements' => $achievements,'notices' => $notices]);
+        return view('pages.achievements', ['contactus' => $contactus, 'achievements' => $achievements,'notices' => $notices]);
     }
 
     /**
@@ -91,8 +93,9 @@ class AchievementsController extends Controller
     public function show($id)
     {
         $achievement = Achievement::find($id);
+        $contactus = ContactUs::find(1);
         $notices = Notice::latest()->get();
-        return view('admin.achievements.show', ['notices' => $notices, 'achievement' => $achievement]);
+        return view('admin.achievements.show', ['contactus' => $contactus, 'notices' => $notices, 'achievement' => $achievement]);
     }
 
     /**

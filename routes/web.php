@@ -46,13 +46,18 @@ Route::post('notices/{notice}', 'Admin\NoticeController@update')->name('notices.
 Route::get('notices/delete/{notice}', 'Admin\NoticeController@destroy')->name('notices.destroy');
 
 
-// News routes
+// News routes...
 Route::resource('news', 'Admin\NewsController', ['except' => [
     'update',
     'destroy'
 ]]);
 Route::post('news/update/{news}', 'Admin\NewsController@update')->name('news.update');
 Route::get('news/delete/{news}', 'Admin\NewsController@destroy')->name('news.destroy');
+
+
+// Contact Us Routes...
+Route::post('contact-us/update/{contactus}', 'Admin\ContactUsController@update')->name('contactus.update');
+
 
 // Achievements routes...
 Route::resource('achievemetns', 'Admin\AchievementsController', ['except' => [

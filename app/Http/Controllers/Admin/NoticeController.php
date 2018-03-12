@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Validator;
 use App\Notice as Notice;
+use App\ContactUs as ContactUs;
 
 class NoticeController extends Controller
 {
@@ -69,8 +70,9 @@ class NoticeController extends Controller
     public function show($id)
     {
         $notice = Notice::find($id);
+        $contactus = ContactUs::find(1);
         $notices = Notice::all();
-        return view('admin.notices.show', ['notice' => $notice, 'notices' => $notices]);
+        return view('admin.notices.show', ['contactus' => $contactus, 'notice' => $notice, 'notices' => $notices]);
     }
 
     /**

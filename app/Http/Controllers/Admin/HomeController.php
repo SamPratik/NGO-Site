@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\AboutUs as AboutUs;
 use App\Work as Work;
 use App\Notice as Notice;
+use App\ContactUs as ContactUs;
 
 class HomeController extends Controller
 {
@@ -16,7 +17,8 @@ class HomeController extends Controller
         $aboutUs = DB::table('about_us')->select('description')->where('id', 1)->get();
         $works = Work::all();
         $notices = Notice::all();
-        return view('pages.home', ['aboutUs' => $aboutUs, 'works' => $works, 'notices' => $notices]);
+        $contactus = ContactUs::find(1);
+        return view('pages.home', ['contactus' => $contactus,'aboutUs' => $aboutUs, 'works' => $works, 'notices' => $notices]);
     }
 
     // show about us text in the modal...

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\News as News;
 use App\Notice as Notice;
+use App\ContactUs as ContactUs;
 use Validator;
 use Image;
 
@@ -19,8 +20,9 @@ class NewsController extends Controller
     public function index()
     {
         $notices = Notice::all();
+        $contactus = ContactUs::find(1);
         $news = News::latest()->simplePaginate(9);
-        return view('pages.news', ['notices' => $notices, 'news' => $news]);
+        return view('pages.news', ['contactus' => $contactus, 'notices' => $notices, 'news' => $news]);
     }
 
     /**
@@ -91,8 +93,9 @@ class NewsController extends Controller
     public function show($id)
     {
         $notices = Notice::latest()->get();
+        $contactus = ContactUs::find(1);
         $new = News::find($id);
-        return view('admin.news.show', ['new' => $new, 'notices' => $notices]);
+        return view('admin.news.show', ['contactus' => $contactus, 'new' => $new, 'notices' => $notices]);
     }
 
     /**

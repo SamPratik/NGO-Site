@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Image;
 use Validator;
+use App\ContactUs as ContactUs;
 // use Purifier;
 use App\Work as Work;
 use App\Notice as Notice;
@@ -99,8 +100,9 @@ class WorkController extends Controller
     public function show($id)
     {
         $work = Work::find($id);
+        $contactus = ContactUs::find(1);
         $notices = Notice::all();
-        return view('admin.works.show', ['work' => $work, 'notices' => $notices]);
+        return view('admin.works.show', ['work' => $work, 'notices' => $notices, 'contactus' => $contactus]);
     }
 
     /**
