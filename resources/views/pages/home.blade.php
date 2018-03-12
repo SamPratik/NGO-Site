@@ -33,7 +33,7 @@
 
 
     {{-- About US Section --}}
-    <section class="about-us">
+    <section id="aboutus" class="about-us">
       <div class="container">
         <h2>
             About US
@@ -48,7 +48,7 @@
 
 
     {{-- Our Work Section --}}
-    <div class="our-work">
+    <div id="ourWork" class="our-work">
       <div class="cover"></div>
       <div class="our-work-panels">
         <h2 class="text-center">

@@ -12,22 +12,22 @@
         <a href="{{ route('home') }}" class="nav-link @yield('ActiveHome')">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">About US</a>
+        <a href="{{ route('home') }}#aboutus" class="nav-link">About US</a>
       </li>
       <li class="nav-item">
         <a href="{{ route('achievemetns.index') }}" class="nav-link @yield('ActiveAchievements')">Achievements</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">Our Work</a>
+        <a href="{{ route('home') }}#ourWork" class="nav-link">Our Work</a>
       </li>
       <li class="nav-item">
         <a href="{{ route('news.index') }}" class="nav-link @yield('ActiveNews')">News</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">Notice</a>
+        <a href="#contactNotice" class="nav-link">Notice</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="#contactNotice" class="nav-link">Contact</a>
       </li>
       @auth
       <li class="nav-item">
