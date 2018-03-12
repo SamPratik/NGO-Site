@@ -38,7 +38,7 @@
               <div class="card-body">
                 <h5 class="card-title">{{ (strlen($achievement->title) > 10) ? substr($achievement->title, 0, 10) . '...' : $achievement->title }} <small class="pull-right">{{ $achievement->updated_at }}</small></h5>
                 <p class="card-text">{{ $achievement->summary }}</p>
-                <a href="#" class="btn btn-outline-primary pull-right"><i class="fa fa-info-circle"></i> Read More</a>
+                <a href="{{ route('achievemetns.show', $achievement->id) }}" class="btn btn-outline-primary pull-right"><i class="fa fa-info-circle"></i> Read More</a>
                 @auth
                 <button onclick="deleteAchievement({{ $achievement->id }})" style="margin-right:5px;" class="btn btn-outline-danger pull-right" type="button" name="button"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
                 <button onclick="window.location.href='{{ route('achievemetns.edit', [$achievement->id]) }}'" style="margin-right:5px;" class="btn btn-outline-warning pull-right" type="button" name="button"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>

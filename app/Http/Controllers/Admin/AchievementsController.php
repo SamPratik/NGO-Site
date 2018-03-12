@@ -90,7 +90,9 @@ class AchievementsController extends Controller
      */
     public function show($id)
     {
-        //
+        $achievement = Achievement::find($id);
+        $notices = Notice::latest()->get();
+        return view('admin.achievements.show', ['notices' => $notices, 'achievement' => $achievement]);
     }
 
     /**
