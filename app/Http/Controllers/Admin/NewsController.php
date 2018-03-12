@@ -90,7 +90,9 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+        $notices = Notice::latest()->get();
+        $new = News::find($id);
+        return view('admin.news.show', ['new' => $new, 'notices' => $notices]);
     }
 
     /**
