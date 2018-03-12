@@ -155,6 +155,8 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $new = News::find($id);
+        $new->delete();
+        return "success";
     }
 }

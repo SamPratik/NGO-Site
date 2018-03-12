@@ -1,8 +1,15 @@
 @extends('pages.main')
 
 @push('styles')
+  <style media="screen">
+    ul {
+      display: inline;
+      float: left;
+    }
+  </style>
   {{ Html::style('css/news/header.css') }}
   {{ Html::style('css/news/news-container.css') }}
+  {{ Html::style('css/toast.css') }}
 @endpush
 
 @section('content')
@@ -15,13 +22,14 @@
 
   {{-- News container section --}}
   <div class="news-container">
-    <div class="container">
-      @auth
+    <div id="news" class="container">
       <p>
+        {{ $news->links() }}
+        @auth
         <button class="btn btn-outline-primary pull-right" onclick="window.location.href='{{ route('news.create') }}'"><i class="fa fa-plus" aria-hidden="true"></i> Add News</button>
+        @endauth
         <p style="clear:both;"></p>
       </p>
-      @endauth
       @php
         $i = 0;
       @endphp
@@ -40,7 +48,7 @@
                 <p class="card-text">{{ $new->summary }}</p>
                 <a href="#" class="btn btn-outline-primary pull-right"><i class="fa fa-info-circle"></i> Read More</a>
                 @auth
-                <button style="margin-right:5px;" class="btn btn-outline-danger pull-right" type="button" name="button"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                <button onclick="deleteNews({{ $new->id }})" style="margin-right:5px;" class="btn btn-outline-danger pull-right" type="button" name="button"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
                 <button onclick="window.location.href='{{ route('news.edit', [$new->id]) }}'" style="margin-right:5px;" class="btn btn-outline-warning pull-right" type="button" name="button"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
                 @endauth
               </div>
@@ -61,3 +69,33 @@
   {{-- Contact us & Notice Section --}}
   @includeif('partials.contact-notice', ['notices' => $notices])
 @endsection
+
+@component('components.success-alert')
+	News deleted successfully!
+@endcomponent
+
+{{-- delete news ajax request to news.destroy --}}
+@push('scripts')
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+      function deleteNews(id) {
+        var c = confirm("Are you sure you want to delete this news?");
+        if(c == true) {
+          $.ajax({
+            url: 'news/delete/' + id,
+            type: 'GET',
+            contentType: false,
+            processData: false,
+            success: function(data) {
+              if(data === 'success') {
+                $("#news").load(location.href + " #news");
+                var x = document.getElementById("snackbar");
+                x.className = "show";
+                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+              }
+            }
+          });
+        }
+      }
+  </script>
+@endpush

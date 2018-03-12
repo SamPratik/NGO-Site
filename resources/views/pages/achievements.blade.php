@@ -1,6 +1,12 @@
 @extends('pages.main')
 
 @push('styles')
+  <style media="screen">
+    ul {
+      display: inline;
+      float: left;
+    }
+  </style>
   {{ Html::style('css/achievements/header.css') }}
   {{ Html::style('css/achievements/achievements-container.css') }}
   {{ Html::style('css/toast.css') }}
@@ -16,12 +22,13 @@
   {{-- Achievements container section --}}
   <div class="achievements-container">
     <div id="achievements" class="container">
-      @auth
       <p>
+        {{ $achievements->links() }}
+        @auth
         <button class="btn btn-outline-primary pull-right" type="button" name="button" onclick="window.location.href='{{ route('achievemetns.create') }}'"><i class="fa fa-plus" aria-hidden="true"></i> Add Achievement</button>
+        @endauth
+        <p style="clear:both;"></p>
       </p>
-      <p style="clear:both;"></p>
-      @endauth
       @php
         $i = 0;
       @endphp

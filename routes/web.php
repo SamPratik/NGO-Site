@@ -52,7 +52,7 @@ Route::resource('news', 'Admin\NewsController', ['except' => [
     'destroy'
 ]]);
 Route::post('news/update/{news}', 'Admin\NewsController@update')->name('news.update');
-
+Route::get('news/delete/{news}', 'Admin\NewsController@destroy')->name('news.destroy');
 
 // Achievements routes...
 Route::resource('achievemetns', 'Admin\AchievementsController', ['except' => [
