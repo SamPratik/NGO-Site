@@ -101,7 +101,8 @@ class AchievementsController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.achievements.edit');
+        $achievement = Achievement::find($id);
+        return view('admin.achievements.edit', ['achievement' => $achievement]);
     }
 
     /**
@@ -113,7 +114,37 @@ class AchievementsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // validation rules...
+        $rules = [
+            'title' => 'required|max:191',
+            'description' => 'required',
+            'summary' => 'required|max:250'
+        ];
+
+        // validator instance...
+        $validator = Validator::make($request->all(), $rules);
+
+        // if validation fails return error messages...
+        if($validator->fails()) {
+          // adding an additional field called 'error'...
+          $validator->errors()->add('error', 'true');
+          return response()->json($validator->errors());
+        }
+
+        $achievement = Achievement::find($id);
+        $achievement->title = $request->title;
+        $achievement->description = $request->description;
+        $achievement->summary = $request->summary;
+
+        if($request->hasFile('achImage')) {
+            $image = $request->file('achImage');
+            $fileName = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/achievement-images/' . $fileName);
+            Image::make($image)->resize(640, 400)->save($location);
+            $achievement->image = $fileName;
+        }
+        $achievement->save();
+        return 'success';
     }
 
     /**
